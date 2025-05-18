@@ -1,4 +1,3 @@
-import './style.css';
 import $ from 'jquery';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import moment from 'moment';
