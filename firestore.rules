@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ✅ REGLAS SIMPLES PARA PLAN GRATIS
+    
+    // Permitir acceso total (temporal para desarrollo)
+    match /{document=**} {
+      allow read, write: if true;
+    }
+    
+    // Reglas específicas para nuestra colección de prueba
+    match /smiles/{document} {
+      allow read, write: if true;
+    }
+    
+    // Futuras colecciones de WiTime
+    match /notes/{noteId} {
+      allow read, write: if true;
+    }
+    
+    match /quickNotes/{userId} {
+      allow read, write: if true;
+    }
+  }
+}
