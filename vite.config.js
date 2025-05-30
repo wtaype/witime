@@ -3,7 +3,6 @@ import { resolve } from 'path';
 
 export default defineConfig({
   build: {
-    minify: true,  
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -12,4 +11,4 @@ export default defineConfig({
     }
   },
   publicDir: 'public' 
-});
+}); 

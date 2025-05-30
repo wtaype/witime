@@ -10,12 +10,9 @@ $(document).click(async function(){
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
-      console.log('📧 Mensaje desde base de datos:', data.mensaje);
+      console.log('📧 Mensaje desde base de datos publico:', data.mensaje);
 
     }else{console.log('Error en consulta, revisa el nombre')}
   }catch(e){console.error(e)}
 });
 
-// En tu main.js:
-console.log('Visible:', import.meta.env.VITE_SECRETO);  
-console.log('Oculto:', import.meta.env.SECRETO_OCULTO);   
