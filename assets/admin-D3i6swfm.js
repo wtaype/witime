@@ -1,0 +1,1 @@
+import{$ as a,d as c,a as n,g as t}from"./init-CdgmWBp7.js";a(document).click(async function(){console.log("Generando consulta, espere... ");try{const e=c(n,"smiles","wilder"),o=await t(e);if(o.exists()){const s=o.data();console.log("📧 Mensaje desde base de datos:",s.mensaje)}else console.log("Error en consulta, revisa el nombre")}catch(e){console.error(e)}});
