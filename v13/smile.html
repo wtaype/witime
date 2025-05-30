@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiTime - Centro Integral del Tiempo</title>
+<meta name="description" content="Tu plataforma completa para gestión, cálculo y visualización del tiempo en todas sus dimensiones.">
+<link href='/witime/v13/logo.png' rel='icon' type='image/x-icon'/>
+  <script type="module" crossorigin src="/witime/v13/assets/main-BeGBHX8H.js"></script>
+  <link rel="stylesheet" crossorigin href="/witime/v13/assets/main-Duyhcx8B.css">
+</head>
+<body>
+<div class="app-container">
+<!-- Background Gradient Container -->
+<div class="bg-gradient"></div>
+<div class="neon-lines"></div>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+<div class="logo" id="logo">
+<div class="logo-icon">
+<i class="far fa-clock"></i>
+</div>
+<span class="logo-text">WiTime</span>
+</div>
+<ul class="nav-links">
+<li class="active" data-section="dashboard">
+<i class="fas fa-home"></i>
+<span class="nav-title">Dashboard</span>
+</li>
+<li data-section="calculators">
+<i class="fas fa-calculator"></i>
+<span class="nav-title">Calculadoras</span>
+</li>
+<li data-section="globe">
+<i class="fas fa-globe"></i>
+<span class="nav-title">Globo Terráqueo</span>
+</li>
+<li data-section="time-calc">
+<i class="fas fa-clock"></i>
+<span class="nav-title">Calc. Tiempo</span>
+</li>
+<li data-section="notepad">
+<i class="fas fa-sticky-note"></i>
+<span class="nav-title">Bloc de notas</span>
+</li>
+<li data-section="converters">
+<i class="fas fa-exchange-alt"></i>
+<span class="nav-title">Conversores</span>
+</li>
+<li data-section="epoch">
+<i class="fas fa-server"></i>
+<span class="nav-title">Epoch UTC</span>
+</li>
+<li data-section="calendar">
+<i class="fas fa-calendar-alt"></i>
+<span class="nav-title">Calendario</span>
+</li>
+<li data-section="timer">
+<i class="fas fa-hourglass"></i>
+<span class="nav-title">Temporizador</span>
+</li>
+<li data-section="stopwatch">
+<i class="fas fa-stopwatch"></i>
+<span class="nav-title">Cronómetro</span>
+</li>
+<li data-section="movies">
+<i class="fas fa-film"></i>
+<span class="nav-title">Películas</span>
+</li>
+<li data-section="dimensions">
+<i class="fas fa-rocket"></i>
+<span class="nav-title">Dimensiones</span>
+</li>
+<li data-section="settings">
+<i class="fas fa-cog"></i>
+<span class="nav-title">Ajustes</span>
+</li>
+</ul>
+
+</nav>
+
+<!-- Main Content Area -->
+<main class="main-content">
+<!-- Header with search -->
+<header class="top-bar">
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+<div class="page-title">
+<h1>Dashboard</h1>
+<p>Bienvenido a tu centro de control del tiempo</p>
+</div>
+</header>
+
+<!-- Section Container -->
+<div class="section-container">
+<!-- 1. Dashboard Principal -->
+<section id="dashboard" class="section active">
+<div class="main-clock-widget">
+<div class="glass-card big-clock">
+<div class="clock-container">
+<div class="analog-clock">
+<div class="clock-face">
+<div class="clock-markings"></div>
+<div class="hour-hand"></div>
+<div class="minute-hand"></div>
+<div class="second-hand"></div>
+<div class="clock-center"></div>
+</div>
+</div>
+<div class="clock-info">
+<div class="time-wrapper">
+<div class="digital-time">15:57</div>
+<div class="digital-seconds">53</div>
+</div>
+<div class="date-display">Martes, 20 de Mayo de 2025</div>
+<div class="location-info">
+<i class="fas fa-map-marker-alt"></i>
+<span class="location-text">Lima, PE</span>
+</div>
+<div class="timezone">
+<i class="fas fa-globe"></i>
+<span class="timezone-text">UTC-05:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="widgets-header">
+<h2>Resumen Temporal</h2>
+<div class="widgets-actions">
+<button class="circular-button refresh-btn"><i class="fas fa-sync-alt"></i></button>
+<button class="circular-button"><i class="fas fa-ellipsis-v"></i></button>
+</div>
+</div>
+
+<div class="dashboard-widgets">
+<div class="glass-card info-card">
+<div class="card-header">
+<h3>Información Rápida</h3>
+<i class="fas fa-info-circle"></i>
+</div>
+<div class="info-grid">
+<div class="info-item">
+<span class="info-label">Día del año</span>
+<span class="info-value" id="day-of-year">140 / 365</span>
+</div>
+<div class="info-item">
+<span class="info-label">Fecha ISO</span>
+<span class="info-value" id="iso-date">2025-05-20</span>
+</div>
+<div class="info-item">
+<span class="info-label">UTC actual</span>
+<span class="info-value" id="utc-time">2025-05-20 15:57:53</span>
+</div>
+<div class="info-item">
+<span class="info-label">GMT actual</span>
+<span class="info-value" id="gmt-time">GMT+0:00</span>
+</div>
+<div class="info-item">
+<span class="info-label">Fase lunar</span>
+<span class="info-value" id="moon-phase">Luna gibosa menguante</span>
+</div>
+<div class="info-item">
+<span class="info-label">Estación</span>
+<span class="info-value" id="season">Primavera</span>
+</div>
+<div class="info-item">
+<span class="info-label">Semana del año</span>
+<span class="info-value" id="week-of-year">21</span>
+</div>
+<div class="info-item">
+<span class="info-label">Trimestre</span>
+<span class="info-value" id="quarter">Q2</span>
+</div>
+<div class="info-item">
+<span class="info-label">Timestamp Unix</span>
+<span class="info-value" id="unix-timestamp">1747353473</span>
+</div>
+<div class="info-item">
+<span class="info-label">Milisegundos</span>
+<span class="info-value" id="milliseconds">1747353473000</span>
+</div>
+<div class="info-item">
+<span class="info-label">Días en el mes</span>
+<span class="info-value" id="days-in-month">31</span>
+</div>
+<div class="info-item">
+<span class="info-label">Duración del día</span>
+<span class="info-value" id="day-duration">12h 32m</span>
+</div>
+<div class="info-item">
+<span class="info-label">Año bisiesto</span>
+<span class="info-value" id="leap-year">No</span>
+</div>
+</div>
+</div>
+
+<div class="glass-card widgets-card">
+<div class="card-header">
+<h3>Acceso Rápido</h3>
+<i class="fas fa-th"></i>
+</div>
+<div class="widget-grid">
+<div class="widget" data-section="timer">
+<div class="widget-icon">
+<i class="fas fa-hourglass"></i>
+</div>
+<span>Timer</span>
+</div>
+<div class="widget" data-section="stopwatch">
+<div class="widget-icon">
+<i class="fas fa-stopwatch"></i>
+</div>
+<span>Cronómetro</span>
+</div>
+<div class="widget" data-section="notepad">
+<div class="widget-icon">
+<i class="fas fa-sticky-note"></i>
+</div>
+<span>Notas</span>
+</div>
+<div class="widget" data-section="globe">
+<div class="widget-icon">
+<i class="fas fa-globe"></i>
+</div>
+<span>Mundial</span>
+</div>
+</div>
+</div>
+
+<div class="glass-card notepad-quick-card">
+<div class="card-header">
+<h3>Notepad Rápido</h3>
+<i class="fas fa-sticky-note"></i>
+</div>
+<div class="notepad-quick-container">
+<textarea class="notepad-quick-textarea" placeholder="Escribe una nota rápida aquí..."></textarea>
+<div class="notepad-quick-actions">
+<button class="sky-button secondary-button notepad-quick-save">Guardar</button>
+<button class="sky-button primary-button notepad-quick-view">Ver todas</button>
+</div>
+<div class="notepad-quick-list">
+<div class="quick-note-item">
+<p>Reunión con el equipo a las 16:30 - No olvidar revisar el reporte mensual.</p>
+<span class="quick-note-date">Hoy - 13:45</span>
+</div>
+<div class="quick-note-item">
+<p>Llamar al proveedor para confirmar entrega del viernes.</p>
+<span class="quick-note-date">Ayer - 17:20</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="widgets-header">
+<h2>Zonas Horarias</h2>
+<div class="widgets-actions">
+<button class="sky-button small-button">
+<i class="fas fa-plus"></i>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+
+<div class="glass-card world-time-card">
+<div class="world-time-header">
+<div class="world-time-filter">
+<button class="tab-button active">Favoritos</button>
+<button class="tab-button">Recientes</button>
+<button class="tab-button">Todas</button>
+</div>
+<div class="world-time-search">
+<input type="text" placeholder="Buscar ciudad...">
+<i class="fas fa-search"></i>
+</div>
+</div>
+<div class="world-time-grid">
+<div class="world-time-item">
+<div class="time-city">Madrid</div>
+<div class="time-info">
+<div class="time-value">21:57</div>
+<div class="time-offset">UTC+02:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+<div class="world-time-item active">
+<div class="time-city">Lima</div>
+<div class="time-info">
+<div class="time-value">10:57</div>
+<div class="time-offset">UTC-05:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+<div class="world-time-item">
+<div class="time-city">Tokyo</div>
+<div class="time-info">
+<div class="time-value">00:57</div>
+<div class="time-offset">UTC+09:00</div>
+</div>
+<div class="time-day">Miércoles</div>
+</div>
+<div class="world-time-item">
+<div class="time-city">New York</div>
+<div class="time-info">
+<div class="time-value">11:57</div>
+<div class="time-offset">UTC-04:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 2. Calculadoras Laborales -->
+<section id="calculators" class="section">
+<div class="calculators-grid">
+<!-- Box 1: Calcular tiempo en empresa con formato completo -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Tiempo en Empresa (Completo)</h3>
+<i class="fas fa-business-time"></i>
+</div>
+<div class="calc-form" id="company-time-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-time">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-time-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 2: Calcular años en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Años en Empresa</h3>
+<i class="fas fa-calendar-alt"></i>
+</div>
+<div class="calc-form" id="company-years-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-years">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-years-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 3: Calcular meses en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Meses en Empresa</h3>
+<i class="fas fa-calendar-day"></i>
+</div>
+<div class="calc-form" id="company-months-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-months">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-months-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 4: Calcular semestres, trimestres y cuatrimestres -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Períodos en Empresa</h3>
+<i class="fas fa-chart-bar"></i>
+</div>
+<div class="calc-form" id="company-periods-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-periods">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-periods-result">
+<div class="result-periods">
+<div class="period-item">
+<div class="period-type">Trimestres:</div>
+<div class="period-value">-</div>
+</div>
+<div class="period-item">
+<div class="period-type">Cuatrimestres:</div>
+<div class="period-value">-</div>
+</div>
+<div class="period-item">
+<div class="period-type">Semestres:</div>
+<div class="period-value">-</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Box 5: Calcular semanas en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Semanas en Empresa</h3>
+<i class="fas fa-calendar-week"></i>
+</div>
+<div class="calc-form" id="company-weeks-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-weeks">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-weeks-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 6: Calcular horas laborales -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Horas Laborales</h3>
+<i class="fas fa-clock"></i>
+</div>
+<div class="calc-form" id="hours-calc">
+<div class="form-group">
+<label>Hora de entrada</label>
+<input type="time" class="sky-input" name="start-time" value="09:00">
+</div>
+<div class="form-group">
+<label>Hora de salida</label>
+<input type="time" class="sky-input" name="end-time" value="18:00">
+</div>
+<div class="form-group">
+<label>Pausas (minutos)</label>
+<input type="number" class="sky-input" name="break-time" value="60">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="hours">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="hours-result">Total: 8 horas</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3. Globo Terráqueo -->
+<section id="globe" class="section">
+<div class="globe-container">
+<div class="glass-card globe-card">
+<div class="globe-wrapper">
+<div class="globe-3d">
+<!-- Aquí iría el globo 3D renderizado -->
+<div class="globe-placeholder">
+<div class="globe-overlay"></div>
+</div>
+</div>
+</div>
+<div class="day-night-indicator">
+<div class="day-side">Día</div>
+<div class="night-side">Noche</div>
+</div>
+</div>
+<div class="glass-card timezone-card">
+<div class="card-header">
+<h3>Zonas Horarias</h3>
+<i class="fas fa-clock"></i>
+</div>
+<div class="timezone-search">
+<input type="text" class="sky-input" placeholder="Buscar ciudad...">
+<button class="sky-button icon-button">
+<i class="fas fa-search"></i>
+</button>
+</div>
+<div class="timezone-list">
+<div class="timezone-item active">
+<div class="timezone-info">
+<div class="timezone-city">Madrid</div>
+<div class="timezone-offset">UTC+02:00</div>
+</div>
+<div class="timezone-time">21:57</div>
+</div>
+<div class="timezone-item">
+<div class="timezone-info">
+<div class="timezone-city">New York</div>
+<div class="timezone-offset">UTC-04:00</div>
+</div>
+<div class="timezone-time">11:57</div>
+</div>
+<div class="timezone-item">
+<div class="timezone-info">
+<div class="timezone-city">Tokyo</div>
+<div class="timezone-offset">UTC+09:00</div>
+</div>
+<div class="timezone-time">00:57</div>
+</div>
+<button class="sky-button secondary-button add-timezone">
+<i class="fas fa-plus"></i>
+<span>Añadir Zona</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. Bloc de notas -->
+<section id="notepad" class="section">
+<div class="notepad-container">
+<div class="glass-card notepad-sidebar">
+<div class="notepad-actions">
+<button class="sky-button primary-button new-note-btn">
+<i class="fas fa-plus"></i>
+<span>Nueva nota</span>
+</button>
+</div>
+<div class="notepad-search">
+<input type="text" class="sky-input" placeholder="Buscar notas...">
+<i class="fas fa-search"></i>
+</div>
+<div class="notes-list">
+<div class="note-item active" data-id="note1">
+<div class="note-title">Reunión de proyecto</div>
+<div class="note-preview">Puntos a tratar en la reunión del lunes...</div>
+<div class="note-date">20 de mayo, 2025</div>
+</div>
+<div class="note-item" data-id="note2">
+<div class="note-title">Lista de tareas</div>
+<div class="note-preview">1. Revisar documentación 2. Contactar cliente...</div>
+<div class="note-date">19 de mayo, 2025</div>
+</div>
+<div class="note-item" data-id="note3">
+<div class="note-title">Ideas para vacaciones</div>
+<div class="note-preview">Posibles destinos: Barcelona, Tokyo...</div>
+<div class="note-date">15 de mayo, 2025</div>
+</div>
+</div>
+</div>
+<div class="glass-card notepad-editor">
+<div class="editor-header">
+<input type="text" class="editor-title" value="Reunión de proyecto">
+<div class="editor-actions">
+<button class="action-button" data-tooltip="Guardar">
+<i class="fas fa-save"></i>
+</button>
+<button class="action-button" data-tooltip="Eliminar">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</div>
+<div class="editor-toolbar">
+<button class="editor-tool" data-command="bold">
+<i class="fas fa-bold"></i>
+</button>
+<button class="editor-tool" data-command="italic">
+<i class="fas fa-italic"></i>
+</button>
+<button class="editor-tool" data-command="underline">
+<i class="fas fa-underline"></i>
+</button>
+<button class="editor-tool" data-command="insertUnorderedList">
+<i class="fas fa-list-ul"></i>
+</button>
+<button class="editor-tool" data-command="insertOrderedList">
+<i class="fas fa-list-ol"></i>
+</button>
+<button class="editor-tool" data-command="createLink">
+<i class="fas fa-link"></i>
+</button>
+<select class="editor-select">
+<option value="normal">Normal</option>
+<option value="h1">Título 1</option>
+<option value="h2">Título 2</option>
+<option value="h3">Título 3</option>
+</select>
+</div>
+<div class="editor-content" contenteditable="true">
+<p>Puntos a tratar en la reunión del lunes:</p>
+<ul>
+<li>Revisión de avances del proyecto</li>
+<li>Planificación para la siguiente fase</li>
+<li>Distribución de tareas</li>
+<li>Discusión sobre el presupuesto</li>
+</ul>
+<p>Recordar llevar la documentación actualizada y las estadísticas del mes anterior.</p>
+<p>La reunión está programada para las <b>10:30</b> en la sala de conferencias.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. Calculadora de Tiempo -->
+<section id="time-calc" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<!-- Resto de secciones (6-13) con estructura básica -->
+<section id="converters" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="epoch" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="calendar" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="timer" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="stopwatch" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="movies" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="dimensions" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="settings" class="section">
+<!-- Contenido de la sección -->
+</section>
+</div>
+</main>
+</div>
+</body>
+</html>
