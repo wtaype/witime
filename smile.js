@@ -15,7 +15,3 @@ $(document).click(async function(){
     }else{console.log('Error en consulta, revisa el nombre')}
   }catch(e){console.error(e)}
 });
-
-// En tu main.js:
-console.log('Visible:', import.meta.env.VITE_SECRETO);  
-console.log('Oculto:', import.meta.env.SECRETO_OCULTO);   
