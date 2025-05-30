@@ -3,12 +3,12 @@ import { resolve } from 'path';
 
 export default defineConfig({
   build: {
-    minify: true,  // ← ¡Agregado aquí!
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        admin: resolve(__dirname, 'smile.html') 
       }
     }
   },
   publicDir: 'public' 
-});
+}); 

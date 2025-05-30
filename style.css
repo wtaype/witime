@@ -2884,3 +2884,346 @@ select:focus {
     border-color: var(--mco);
     box-shadow: 0 0 0 3px rgba(var(--mco-rgb, 25, 120, 215), 0.2);
 }
+
+/* AUTH VERSIONES */
+/* ACTUALIZANDO ESTILOS PERSONALIZADOS */
+/* Estilos modernos para el sistema de autenticación basado en los temas */
+.authModals .modal-content {
+  max-width: 430px;
+  position:relative;
+  border-radius: 1vh;
+  box-shadow: var(--bsh);
+  background: var(--F);
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  animation: slideUpModal 0.4s ease;
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.authModals .modal-header {
+  border: none;
+  padding: 15px;
+  background: transparent;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+}
+
+.authModals .close-modal {
+  color: var(--mco);
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.authModals .close-modal:hover {
+  transform: scale(1.1);
+}
+
+.auth-form {
+  padding: 0 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  box-shadow: 0 4px 15px rgba(255, 232, 0, 0.3);
+}
+
+.auth-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.auth-title {
+  font-family: var(--ff_P);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--mco);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.auth-title span {
+  color: #FFE800;
+}
+
+.auth-text {
+  color: var(--tx);
+  font-size: 0.9rem;
+  margin: 15px 0 5px;
+  align-self: flex-start;
+}
+
+
+#loginForm,
+#registroForm,
+#recuperarForm {
+  width: 100%;
+  gap: 16px;
+  position: relative;
+  z-index: 5;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon i {
+  position: absolute;
+  left: 15px;
+  color: var(--mco);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+
+.input-icon .togglePass {
+  position: absolute;
+  left: 90%;
+  cursor: pointer;
+  color: #bbb;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border-radius: 10px;
+  border: 1px solid var(--bdr);
+  background: var(--wb);
+  font-size: 1rem;
+  color: var(--tx);
+  transition: all 0.3s;
+}
+
+.input-icon input:focus {
+  border-color: var(--mco);
+  box-shadow: 0 0 0 3px var(--bxs);
+  outline: none;
+}
+
+.input-icon input:focus + i {
+  color: var(--hv);
+  opacity: 1;
+}
+
+.input-icon input::placeholder {
+  color: var(--txe);
+  opacity: 0.6;
+}
+
+.datepicker {
+  cursor: pointer;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.form-check input[type="checkbox"] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: var(--mco);
+}
+
+.form-check label {
+  color: var(--tx);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.btn-auth {
+  width: 100%;
+  padding: 15px;
+  background: var(--mco);
+  color: var(--txa);
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px var(--bxs);
+}
+
+.btn-auth:hover {
+  background: var(--hva);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--bxs);
+}
+.inactivo {
+    opacity: .7;
+}
+
+.auth-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.auth-links span {
+  color: var(--mco);
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 5px 0;
+}
+
+.auth-links span:hover {
+  color: var(--hv);
+  text-decoration: underline;
+}
+
+.auth-links .volverLogin {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px auto;
+}
+
+.auth-links .volverLogin i {
+  font-size: 0.8rem;
+  color: inherit;
+}
+
+/* Animaciones de elementos de formulario */
+.auth-form .form-group {
+  animation: fadeIn 0.5s ease backwards;
+}
+
+.auth-form .form-group:nth-child(1){animation-delay: 0.1s}
+.auth-form .form-group:nth-child(2) {animation-delay: 0.2s;}
+.auth-form .form-group:nth-child(3) {animation-delay: 0.3s;}
+.auth-form .form-group:nth-child(4) {animation-delay: 0.4s;}
+.auth-form .form-group:nth-child(5) {animation-delay: 0.5s;}
+.auth-form .form-group:nth-child(6) {animation-delay: 0.6s;}
+.auth-form .form-group:nth-child(7) {animation-delay: 0.7s;}
+.auth-form .form-group:nth-child(8) {animation-delay: 0.8s;}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#registroModal #registroForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 12px;
+}
+#registroModal .modal-content{
+    max-width: 568px;
+}
+
+/* Ajustes responsivos */
+/* Media queries de tamaños */
+@media (max-width:770px){
+    :root{
+        --fz_s1:1.12vw;
+        --fz_s2:1.27vw;
+        --fz_s3:1.32vw;
+        --fz_s4:1.47vw;
+        --fz_m:1.5vw;
+        --fz_m1:1.55vw;
+        --fz_m2:1.60vw;
+        --fz_m3:1.65vw;
+        --fz_l:1.70vw;
+        --fz_l1:1.75vw;
+        --fz_l2:1.80vw;
+        --fz_l3:1.85vw;
+        --fz_t1:2.30vw;
+        --fz_t2:3.30vw;
+    }
+}
+
+@media (max-width:576px){
+    :root{
+        --fz_s1:2.12vw;
+        --fz_s2:2.27vw;
+        --fz_s3:2.32vw;
+        --fz_s4:2.47vw;
+        --fz_m:2.50vw;
+        --fz_m1:2.55vw;
+        --fz_m2:2.6vw;
+        --fz_m3:2.65vw;
+        --fz_l:2.70vw;
+        --fz_l1:2.75vw;
+        --fz_l2:2.80vw;
+        --fz_l3:2.85vw;
+        --fz_t1:3.30vw;
+        --fz_t2:4.30vw;
+    }
+  .auth-form {
+    padding: 0 20px 30px;
+  }
+  
+  .auth-title {
+    font-size: 1.5rem;
+  }
+  
+  .auth-form::before {
+    height: 100px;
+  }
+  
+  .auth-logo {
+    width: 70px;
+    height: 70px;
+    margin-top: 25px;
+  }
+  
+  .input-icon input {
+    padding: 12px 12px 12px 40px;
+    font-size: 0.9rem;
+  }
+  
+  .btn-auth {
+    padding: 12px;
+  }
+  #registroModal #registroForm {
+    display: flex;
+    flex-direction: column;
+  }
+}

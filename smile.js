@@ -38,10 +38,8 @@ import 'swiper/css';// Para crear carruseles y sliders touch
 
 
  // FIREBASE INTEGRATION - Agregar después de los imports existentes
-import { getFirestore, doc, setDoc, getDoc, collection, getDocs, query, where, orderBy, limit } from "firebase/firestore"; 
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore"; 
 import { auth, db } from './firebase/init.js';
-import { wiAuth } from './wilogin.js'; //Para autenticación login, registro y Restablecer
 
 import { 
   adrm, wiTema, witip, flagUrl, hasFlag, // Función para añadir/remover elementos del DOM
@@ -53,19 +51,20 @@ import {
   Capi
 } from './widev.js';
 
-// 🔐 REDIRECCIÓN INTELIGENTE
-onAuthStateChanged(auth, async user => {
-  if (!user) return SmilePublico();
-  window.location.href = '/smile.html'; //Actualizando privado 
-});
 
-// 🎯 FUNCIÓN PÚBLICA SIMPLE
-function SmilePublico() {
-  console.log('🌍 Modo público - SEO genial');
-  $('.auth-buttons').show();
-}
- 
 
+// $(document).click(async function(){
+//   console.log('Generando consulta, espere... ');
+//   try {
+//     const docRef = doc(db, 'smiles', 'wilder');
+//     const docSnap = await getDoc(docRef);
+//     if (docSnap.exists()) {
+//       const data = docSnap.data();
+//       console.log('📧 Mensaje desde base de datos:', data.text);
+
+//     }else{console.log('Error en consulta, revisa el nombre')}
+//   }catch(e){console.error(e)}
+// });
 
 
 // PROYECTO ACTUALIZADO 

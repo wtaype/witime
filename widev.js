@@ -188,7 +188,7 @@ $(`<style>
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);z-index:100;justify-content:center;align-items:center;animation:fadeInModal 0.3s ease;}
 .modal.active{display:flex;}
 @keyframes fadeInModal{from{opacity:0;}to{opacity:1;}}
-.modal-content{background-color:#fff;border-radius:var(--border-radius);box-shadow:var(--shadow);width:90%;max-width:600px;max-height:90vh;overflow-y:auto;animation:slideInModal 0.3s ease;}
+.modal-content{background-color:#fff;border-radius:var(--border-radius);box-shadow:var(--shadow);width:90%;max-width:600px;max-height:90vh;overflow-y:auto;animation:slideInModal 0.3s ease;border-radius:1vh}
 @keyframes slideInModal{from{transform:translateY(-30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .modal-header{padding:20px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;}
 .modal-title{color:var(--navy-blue);font-size:1.2rem;font-weight:600;}
@@ -237,7 +237,6 @@ export const initModalSystem = () => {
 };
 // Inicializamos los modales automáticamente
 initModalSystem();
-
 /* ============================================================
    📌 EJEMPLO DE USO DEL MODAL - CÓDIGO HTML DE REFERENCIA
    (Este bloque es solo guía y no se renderiza en JS)
@@ -265,3 +264,131 @@ initModalSystem();
 <button onclick="openModal('miModal')">Abrir Modal</button>
 
 ============================================================ */
+
+// Primer letra mayusculas
+export const Capi = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}; 
+
+// FECHA LOCAL CON ZONA HORARIA ACTUALIZADO 
+export const fechaLocal = (fecha) => {
+  const [año, mes, dia] = fecha.split('-').map(Number);
+  return new Date(año, mes - 1, dia); // mes - 1 porque JavaScript cuenta desde 0
+};
+
+export const showLoading = (show) => {
+  $('#loading-style').length || $('head').append('<style id="loading-style">.loading{height:1vh;background:linear-gradient(to right,#fdd835,#43a047,#fdd835);background-size:200% 100%;animation:l 1.5s infinite;border-radius:3px;width:100%;position:fixed;top:0;left:0;z-index:9999}@keyframes l{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}</style>');
+  $('.loading').length || $('body').append('<div class="loading" style="display:none"></div>');
+  $('.loading').toggle(!!show);
+};
+
+export function witip(el, texto, pos = 'top', tiempo = 1800) {
+  // Mapa de tipos de mensaje a colores
+  const tipoColor = {
+    'success': '--success', 
+    'error': '--error',
+    'warning': '--warning',
+    'info': '--info'
+  };
+  
+  // Determinar si el tercer parámetro es un tipo de mensaje
+  const tipo = tipoColor[pos] ? pos : null;
+  const posicion = tipo ? 'top' : pos;
+  
+  // Inicializar estilos si no existen
+  if (!$('#witip-styles').length) {
+    $('<style id="witip-styles">' +
+      '.witip{position:fixed;background:var(--mco);color:var(--txa);z-index:10000;' + 
+      'padding:8px 12px;border-radius:4px;font-size:.85rem;max-width:250px;box-shadow:0 2px 8px rgba(0,0,0,.2);' + 
+      'opacity:0;transition:opacity .2s;pointer-events:none}' +
+      '.witip::after{content:"";position:absolute;border:6px solid transparent}' + 
+      '.witip.show{opacity:1}' +
+      '.witip.top::after{top:100%;left:50%;margin-left:-6px;border-top-color:inherit}' + 
+      '.witip.bottom::after{bottom:100%;left:50%;margin-left:-6px;border-bottom-color:inherit}' + 
+      '.witip.left::after{left:100%;top:50%;margin-top:-6px;border-left-color:inherit}' + 
+      '.witip.right::after{right:100%;top:50%;margin-top:-6px;border-right-color:inherit}' +
+      '.witip.success{background:var(--success);color:#fff}' +
+      '.witip.error{background:var(--error);color:#fff}' +
+      '.witip.warning{background:var(--warning);color:#000}' +
+      '.witip.info{background:var(--info);color:#fff}' +
+      '</style>').appendTo('head');
+  }
+
+  // Procesar selectores múltiples
+  if (typeof el === 'string' && (el.includes(',') || el.match(/^[.#a-z]/i))) {
+    $(el).each((i, item) => witip(item, texto, pos, tiempo));
+    return $(el);
+  }
+
+  // Convertir a jQuery y verificar existencia
+  const $el = $(el);
+  if (!$el.length) return;
+  
+  // Limpiar tooltips anteriores
+  clearTimeout($el.data('witip-timer'));
+  $('.witip').remove();
+  
+  // Asignar ID único si es necesario
+  const elId = $el.attr('id') || $el.attr('id', `wtip-${Date.now()}-${Math.floor(Math.random() * 1000)}`).attr('id');
+  
+  // Crear tooltip con clase de tipo si se especificó
+  const $tip = $('<div>', {
+    class: `witip ${posicion} ${tipo || ''}`,
+    'data-for': elId,
+    text: texto,
+    css: { 'border-color': tipo ? `var(${tipoColor[tipo]})` : 'var(--mco)' }
+  });
+  
+  // Si es tipo temático, establecer el color de la flecha
+  if (tipo) {
+    $tip.css('background-color', `var(${tipoColor[tipo]})`);
+  }
+  
+  $('body').append($tip);
+  
+  // Posicionar tooltip usando rect (más preciso con modales)
+  const { left, top, right, bottom, width, height } = $el[0].getBoundingClientRect();
+  const tipW = $tip.outerWidth();
+  const tipH = $tip.outerHeight();
+  
+  // Calcular posición con objeto de mapeo (más limpio que switch)
+  const positions = {
+    'top':    { x: left + width/2 - tipW/2, y: top - tipH - 8 },
+    'bottom': { x: left + width/2 - tipW/2, y: bottom + 8 },
+    'left':   { x: left - tipW - 8, y: top + height/2 - tipH/2 },
+    'right':  { x: right + 8, y: top + height/2 - tipH/2 }
+  };
+  
+  // Obtener coordenadas y ajustar a la ventana
+  let { x, y } = positions[posicion];
+  x = Math.max(8, Math.min(x, window.innerWidth - tipW - 8));
+  y = Math.max(8, Math.min(y, window.innerHeight - tipH - 8));
+  
+  // Aplicar posición y mostrar con animación
+  $tip.css({ left: x, top: y });
+  
+  $el.data('witip-timer', setTimeout(() => {
+    $tip.addClass('show');
+    
+    if (tiempo > 0) {
+      setTimeout(() => {
+        $tip.removeClass('show');
+        setTimeout(() => $tip.remove(), 200);
+      }, tiempo);
+    }
+  }, 10));
+  
+  return $el;
+}
+
+export const wiTema = (() => {
+  const setTema = el => {
+    const [tema, color] = $(el).data('tema').split('|');
+    $('html').attr('data-theme', tema);
+    $('meta[name="theme-color"]').length ? $('meta[name="theme-color"]').attr('content', color) : $('<meta>').attr({name:'theme-color',content:color}).appendTo('head');
+    savels('witema', $(el).data('tema'), 720); $('.mtha').removeClass('mtha'); $(el).addClass('mtha');
+  };
+  const wihoo = getls('witema') ? $(`[data-tema="${getls('witema')}"]`)[0] : $('.mtha')[0] || $('[data-tema]').first()[0]; wihoo && setTema(wihoo);
+  $('[data-tema]').click(e => setTema(e.currentTarget));
+  return { setTema };
+})();
