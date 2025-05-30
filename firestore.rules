@@ -1,26 +1,27 @@
 rules_version = '2';
-
 service cloud.firestore {
   match /databases/{database}/documents {
-    // ✅ REGLAS SIMPLES PARA PLAN GRATIS
+    // Mensajes de wilder - acceso controlado
+    match /smiles/wilder {
+      allow read: if true; // Lectura pública para mostrar mensaje
+      allow write: if false; // Solo tú puedes escribir via admin
+    }
     
-    // Permitir acceso total (temporal para desarrollo)
+    // Datos de usuarios de la app
+    match /users/{userId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == userId;
+    }
+    
+    // Configuración de timezone y datos públicos
+    match /public/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    // Bloquear todo lo demás
     match /{document=**} {
-      allow read, write: if true;
-    }
-    
-    // Reglas específicas para nuestra colección de prueba
-    match /smiles/{document} {
-      allow read, write: if true;
-    }
-    
-    // Futuras colecciones de WiTime
-    match /notes/{noteId} {
-      allow read, write: if true;
-    }
-    
-    match /quickNotes/{userId} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }
