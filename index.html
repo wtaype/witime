@@ -1,411 +1,681 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WiTime - Centro del tiempo</title>
-    <meta name="description" content="WiTime - Tu centro completo para todas las funciones relacionadas con el tiempo, fechas, calendarios, convertidores y más." />
-    <script type="module" crossorigin src="/witime/assets/main-BhKvgwKt.js"></script>
-    <link rel="stylesheet" crossorigin href="/witime/assets/main-flq1X5f-.css">
-  </head>
-  <body>
-    <div class="app-wrapper">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="logo">
-            <i class="fas fa-clock logo-icon"></i>
-            <div class="logo-text">WiTime</div>
-          </div>
-          <button class="sidebar-toggle" id="sidebarToggle">
-            <i class="fas fa-angle-left"></i>
-          </button>
-        </div>
-        <nav class="nav-links">
-          <div class="nav-link active" data-section="dashboard">
-            <i class="fas fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </div>
-          <div class="nav-link" data-section="calculator">
-            <i class="fas fa-calculator"></i>
-            <span>Calculadora</span>
-          </div>
-          <div class="nav-link" data-section="converter">
-            <i class="fas fa-exchange-alt"></i>
-            <span>Conversor</span>
-          </div>
-          <div class="nav-link" data-section="timezone">
-            <i class="fas fa-globe"></i>
-            <span>Zonas Horarias</span>
-          </div>
-          <div class="nav-link" data-section="calendar">
-            <i class="fas fa-calendar-alt"></i>
-            <span>Calendario</span>
-          </div>
-          <div class="nav-link" data-section="timer">
-            <i class="fas fa-clock"></i>
-            <span>Temporizador</span>
-          </div>
-        </nav>
-        <div class="sidebar-footer">
-          <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
-            <span>Modo oscuro</span>
-          </button>
-        </div>
-      </aside>
-      
-      <!-- Overlay para móvil -->
-      <div class="sidebar-overlay"></div>
-      
-      <!-- Contenido principal -->
-      <main class="main-content">
-        <header class="content-header">
-          <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <i class="fas fa-bars"></i>
-          </button>
-          <h1 class="page-title" id="pageTitle">Dashboard v22</h1>
-          <div class="header-actions">
-            <button class="header-action-btn" id="refreshBtn" title="Actualizar">
-              <i class="fas fa-sync-alt"></i>
-            </button>
-            <button class="header-action-btn" id="helpBtn" title="Ayuda">
-              <i class="fas fa-question-circle"></i>
-            </button>
-          </div>
-        </header>
-        
-        <div class="content-container">
-          <!-- Dashboard -->
-          <section id="dashboard" class="content-section active">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-tachometer-alt"></i>
-                  Dashboard de Tiempo v21 
-                </div>
-              </div>
-              <div class="card-body">
-                <h2 class="greeting-text" id="greeting">¡Bienvenido! 😊</h2>
-                <p style="margin-bottom: 20px;">Tu centro completo para todas las funciones relacionadas con el tiempo.</p>
-                <div class="time-dashboard" id="timeDashboard">
-                  <!-- Se llenará dinámicamente con JS -->
-                </div>
-              </div>
-            </div>
-          </section>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WiTime 2.0 - Centro Integral del Tiempo</title>
+<meta name="description" content="Tu plataforma completa para gestión, cálculo y visualización del tiempo en todas sus dimensiones.">
+<link href='/witime/logo.png' rel='icon' type='image/x-icon'/>
+  <script type="module" crossorigin src="/witime/assets/main-DnNbjaOJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/witime/assets/main-CXT-tvoG.css">
+</head>
+<body>
+<div class="app-container">
+<!-- Background Gradient Container -->
+<div class="bg-gradient"></div>
+<div class="neon-lines"></div>
 
-          <!-- Calculadora de Tiempo -->
-          <section id="calculator" class="content-section">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-calculator"></i>
-                  Calculadora de Tiempo
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Calcula la diferencia entre dos fechas en diferentes unidades de tiempo.</p>
-                <div class="calculator-container">
-                  <div class="calculator-form">
-                    <div class="input-group">
-                      <label>Fecha y Hora Inicial</label>
-                      <input type="datetime-local" id="startDateTime" required>
-                    </div>
-                    <div class="input-group">
-                      <label>Fecha y Hora Final</label>
-                      <input type="datetime-local" id="endDateTime" required>
-                    </div>
-                  </div>
-                  
-                  <button class="button" id="calculateDifference">
-                    <i class="fas fa-calculator"></i> Calcular Diferencia
-                  </button>
-                  
-                  <div class="results-container">
-                    <div class="result-card">
-                      <h3>Años, Meses, Días</h3>
-                      <div class="result-value" id="yearMonthDay">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Días Totales</h3>
-                      <div class="result-value" id="totalDays">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Horas, Minutos, Segundos</h3>
-                      <div class="result-value" id="hourMinuteSecond">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Segundos Totales</h3>
-                      <div class="result-value" id="totalSeconds">--</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+<div class="logo" id="logo">
+<div class="logo-icon">
+<i class="far fa-clock"></i>
+</div>
+<span class="logo-text">WiTime</span>
+</div>
+<ul class="nav-links">
+<li class="active" data-section="dashboard">
+<i class="fas fa-home"></i>
+<span class="nav-title">Dashboard</span>
+</li>
+<li data-section="calculators">
+<i class="fas fa-calculator"></i>
+<span class="nav-title">Calculadoras</span>
+</li>
+<li data-section="globe">
+<i class="fas fa-globe"></i>
+<span class="nav-title">Globo Terráqueo</span>
+</li>
+<li data-section="time-calc">
+<i class="fas fa-clock"></i>
+<span class="nav-title">Calc. Tiempo</span>
+</li>
+<li data-section="notepad">
+<i class="fas fa-sticky-note"></i>
+<span class="nav-title">Bloc de notas</span>
+</li>
+<li data-section="converters">
+<i class="fas fa-exchange-alt"></i>
+<span class="nav-title">Conversores</span>
+</li>
+<li data-section="epoch">
+<i class="fas fa-server"></i>
+<span class="nav-title">Epoch UTC</span>
+</li>
+<li data-section="calendar">
+<i class="fas fa-calendar-alt"></i>
+<span class="nav-title">Calendario</span>
+</li>
+<li data-section="timer">
+<i class="fas fa-hourglass"></i>
+<span class="nav-title">Temporizador</span>
+</li>
+<li data-section="stopwatch">
+<i class="fas fa-stopwatch"></i>
+<span class="nav-title">Cronómetro</span>
+</li>
+<li data-section="movies">
+<i class="fas fa-film"></i>
+<span class="nav-title">Películas</span>
+</li>
+<li data-section="dimensions">
+<i class="fas fa-rocket"></i>
+<span class="nav-title">Dimensiones</span>
+</li>
+<li data-section="settings">
+<i class="fas fa-cog"></i>
+<span class="nav-title">Ajustes</span>
+</li>
+</ul>
 
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-hourglass-half"></i>
-                  Calculadora de Edad
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Calcula tu edad exacta desde tu fecha de nacimiento.</p>
-                <div class="calculator-container">
-                  <div class="calculator-form">
-                    <div class="input-group">
-                      <label>Fecha de Nacimiento</label>
-                      <input type="date" id="birthDate" required>
-                    </div>
-                  </div>
-                  
-                  <button class="button" id="calculateAge">
-                    <i class="fas fa-birthday-cake"></i> Calcular Edad
-                  </button>
-                  
-                  <div class="results-container">
-                    <div class="result-card">
-                      <h3>Edad Actual</h3>
-                      <div class="result-value" id="currentAge">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Próximo Cumpleaños</h3>
-                      <div class="result-value" id="nextBirthday">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Días Vividos</h3>
-                      <div class="result-value" id="daysLived">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Horas Vividas</h3>
-                      <div class="result-value" id="hoursLived">--</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+</nav>
 
-          <!-- Conversor de Unidades de Tiempo -->
-          <section id="converter" class="content-section">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-exchange-alt"></i>
-                  Conversor de Unidades de Tiempo
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Convierte entre diferentes unidades de tiempo con precisión.</p>
-                <div class="converter-container">
-                  <div class="calculator-form">
-                    <div class="input-group">
-                      <label>Valor</label>
-                      <input type="number" id="timeValue" placeholder="Ingrese un valor">
-                    </div>
-                    <div class="input-group">
-                      <label>Unidad de Origen</label>
-                      <select id="fromUnit">
-                        <option value="seconds">Segundos</option>
-                        <option value="minutes">Minutos</option>
-                        <option value="hours">Horas</option>
-                        <option value="days">Días</option>
-                        <option value="weeks">Semanas</option>
-                        <option value="months">Meses</option>
-                        <option value="years">Años</option>
-                        <option value="decades">Décadas</option>
-                        <option value="centuries">Siglos</option>
-                        <option value="millennia">Milenios</option>
-                      </select>
-                    </div>
-                    <div class="input-group">
-                      <label>Unidad de Destino</label>
-                      <select id="toUnit">
-                        <option value="seconds">Segundos</option>
-                        <option value="minutes">Minutos</option>
-                        <option value="hours">Horas</option>
-                        <option value="days">Días</option>
-                        <option value="weeks">Semanas</option>
-                        <option value="months">Meses</option>
-                        <option value="years">Años</option>
-                        <option value="decades">Décadas</option>
-                        <option value="centuries">Siglos</option>
-                        <option value="millennia">Milenios</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                  <button class="button" id="convertTime">
-                    <i class="fas fa-sync"></i> Convertir
-                  </button>
-                  
-                  <div class="result-card">
-                    <h3>Resultado</h3>
-                    <div class="result-value" id="conversionResult">--</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+<!-- Main Content Area -->
+<main class="main-content">
+<!-- Header with search -->
+<header class="top-bar">
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+<div class="page-title">
+<h1>Dashboard</h1>
+<p>Bienvenido a tu centro de control del tiempo</p>
+</div>
+<div class="right-controls">
+<button class="sky-button primary-button">Registrar</button>
+<button class="sky-button primary-button">Login</button>
+</div>
+</header>
 
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-history"></i>
-                  Tiempo Unix y Época
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Convierte entre timestamps Unix y fechas legibles.</p>
-                <div class="converter-container">
-                  <div class="calculator-form">
-                    <div class="input-group">
-                      <label>Timestamp Unix (segundos desde 1 Enero 1970)</label>
-                      <input type="number" id="unixTimestamp" placeholder="Timestamp Unix">
-                    </div>
-                    <div class="input-group">
-                      <label>Fecha y Hora</label>
-                      <input type="datetime-local" id="dateTimeInput">
-                    </div>
-                  </div>
-                  
-                  <div class="flex gap-20">
-                    <button class="button" id="convertUnixToDate">
-                      <i class="fas fa-arrow-down"></i> Unix a Fecha
-                    </button>
-                    <button class="button" id="convertDateToUnix">
-                      <i class="fas fa-arrow-up"></i> Fecha a Unix
-                    </button>
-                  </div>
-                  
-                  <div class="results-container">
-                    <div class="result-card">
-                      <h3>Resultado en Fecha</h3>
-                      <div class="result-value" id="dateResult">--</div>
-                    </div>
-                    <div class="result-card">
-                      <h3>Resultado en Unix</h3>
-                      <div class="result-value" id="unixResult">--</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+<!-- Section Container -->
+<div class="section-container">
+<!-- 1. Dashboard Principal -->
+<section id="dashboard" class="section active">
+<div class="main-clock-widget">
+<div class="glass-card big-clock">
+<div class="clock-container">
+<div class="analog-clock">
+<div class="clock-face">
+<div class="clock-markings"></div>
+<div class="hour-hand"></div>
+<div class="minute-hand"></div>
+<div class="second-hand"></div>
+<div class="clock-center"></div>
+</div>
+</div>
+<div class="clock-info">
+<div class="time-wrapper">
+<div class="digital-time">15:57</div>
+<div class="digital-seconds">53</div>
+</div>
+<div class="date-display">Martes, 20 de Mayo de 2025</div>
+<div class="location-info">
+<i class="fas fa-map-marker-alt"></i>
+<span class="location-text">Lima, PE</span>
+</div>
+<div class="timezone">
+<i class="fas fa-globe"></i>
+<span class="timezone-text">UTC-05:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-          <!-- Zonas Horarias -->
-          <section id="timezone" class="content-section">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-globe"></i>
-                  Zonas Horarias Mundiales
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Consulta la hora actual en diferentes zonas horarias del mundo.</p>
-                
-                <!-- Filtros de regiones -->
-                <div class="timezone-filter" id="timezoneFilter">
-                  <button class="timezone-filter-button active" data-region="all">Todas</button>
-                  <button class="timezone-filter-button" data-region="Sudamérica">Sudamérica</button>
-                  <button class="timezone-filter-button" data-region="Europa">Europa</button>
-                  <button class="timezone-filter-button" data-region="Norteamérica">Norteamérica</button>
-                  <button class="timezone-filter-button" data-region="Asia">Asia</button>
-                  <button class="timezone-filter-button" data-region="Oceanía">Oceanía</button>
-                  <button class="timezone-filter-button" data-region="Oriente Medio">Oriente Medio</button>
-                </div>
-                
-                <div class="timezone-container" id="timezoneContainer">
-                  <!-- Se llenará dinámicamente con JS -->
-                </div>
-              </div>
-            </div>
-          </section>
+<div class="widgets-header">
+<h2>Resumen Temporal</h2>
+<div class="widgets-actions">
+<button class="circular-button refresh-btn"><i class="fas fa-sync-alt"></i></button>
+<button class="circular-button"><i class="fas fa-ellipsis-v"></i></button>
+</div>
+</div>
 
-          <!-- Calendario -->
-          <section id="calendar" class="content-section">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-calendar-alt"></i>
-                  Calendario
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Visualiza y organiza tus eventos en un completo calendario interactivo.</p>
-                <div class="calendar-container">
-                  <div class="calendar-loading">
-                    <div class="calendar-spinner"></div>
-                  </div>
-                  <div id="fullCalendar"></div>
-                </div>
-              </div>
-            </div>
-          </section>
+<div class="dashboard-widgets">
+<div class="glass-card info-card">
+<div class="card-header">
+<h3>Información Rápida</h3>
+<i class="fas fa-info-circle"></i>
+</div>
+<div class="info-grid">
+<div class="info-item">
+<span class="info-label">Día del año</span>
+<span class="info-value" id="day-of-year">140 / 365</span>
+</div>
+<div class="info-item">
+<span class="info-label">Fecha ISO</span>
+<span class="info-value" id="iso-date">2025-05-20</span>
+</div>
+<div class="info-item">
+<span class="info-label">UTC actual</span>
+<span class="info-value" id="utc-time">2025-05-20 15:57:53</span>
+</div>
+<div class="info-item">
+<span class="info-label">GMT actual</span>
+<span class="info-value" id="gmt-time">GMT+0:00</span>
+</div>
+<div class="info-item">
+<span class="info-label">Fase lunar</span>
+<span class="info-value" id="moon-phase">Luna gibosa menguante</span>
+</div>
+<div class="info-item">
+<span class="info-label">Estación</span>
+<span class="info-value" id="season">Primavera</span>
+</div>
+<div class="info-item">
+<span class="info-label">Semana del año</span>
+<span class="info-value" id="week-of-year">21</span>
+</div>
+<div class="info-item">
+<span class="info-label">Trimestre</span>
+<span class="info-value" id="quarter">Q2</span>
+</div>
+<div class="info-item">
+<span class="info-label">Timestamp Unix</span>
+<span class="info-value" id="unix-timestamp">1747353473</span>
+</div>
+<div class="info-item">
+<span class="info-label">Milisegundos</span>
+<span class="info-value" id="milliseconds">1747353473000</span>
+</div>
+<div class="info-item">
+<span class="info-label">Días en el mes</span>
+<span class="info-value" id="days-in-month">31</span>
+</div>
+<div class="info-item">
+<span class="info-label">Duración del día</span>
+<span class="info-value" id="day-duration">12h 32m</span>
+</div>
+<div class="info-item">
+<span class="info-label">Año bisiesto</span>
+<span class="info-value" id="leap-year">No</span>
+</div>
+</div>
+</div>
 
-          <!-- Temporizador y Cronómetro -->
-          <section id="timer" class="content-section">
-            <div class="glass-card">
-              <div class="card-header">
-                <div class="card-title">
-                  <i class="fas fa-clock"></i>
-                  Temporizador y Cronómetro
-                </div>
-              </div>
-              <div class="card-body">
-                <p style="margin-bottom: 20px;">Herramientas para contar el tiempo hacia atrás o hacia adelante.</p>
-                <div class="timer-container">
-                  <div class="glass-card">
-                    <div class="card-header">
-                      <div class="card-title">
-                        <i class="fas fa-hourglass-half"></i>
-                        Temporizador
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="input-group">
-                        <label>Ajustar tiempo (minutos)</label>
-                        <input type="number" id="timerMinutes" min="1" max="999" value="5">
-                      </div>
-                      <div class="timer-display" id="timerDisplay">05:00</div>
-                      <div class="timer-controls">
-                        <button class="button" id="startTimer"><i class="fas fa-play"></i></button>
-                        <button class="button" id="pauseTimer"><i class="fas fa-pause"></i></button>
-                        <button class="button" id="resetTimer"><i class="fas fa-undo"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="glass-card">
-                    <div class="card-header">
-                      <div class="card-title">
-                        <i class="fas fa-stopwatch"></i>
-                        Cronómetro
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="stopwatch-display" id="stopwatchDisplay">00:00:00</div>
-                      <div class="stopwatch-controls">
-                        <button class="button" id="startStopwatch"><i class="fas fa-play"></i></button>
-                        <button class="button" id="pauseStopwatch"><i class="fas fa-pause"></i></button>
-                        <button class="button" id="resetStopwatch"><i class="fas fa-undo"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          <!-- Pie de página -->
-          <footer class="app-footer">
-            <p>&copy; 2023 WiTime - Tu Centro del Tiempo | Desarrollado con <i class="fas fa-heart heart-icon"></i> por JuanR</p>
-          </footer>
-        </div>
-      </main>
-    </div>
-  </body>
+<div class="glass-card widgets-card">
+<div class="card-header">
+<h3>Acceso Rápido</h3>
+<i class="fas fa-th"></i>
+</div>
+<div class="widget-grid">
+<div class="widget" data-section="timer">
+<div class="widget-icon">
+<i class="fas fa-hourglass"></i>
+</div>
+<span>Timer</span>
+</div>
+<div class="widget" data-section="stopwatch">
+<div class="widget-icon">
+<i class="fas fa-stopwatch"></i>
+</div>
+<span>Cronómetro</span>
+</div>
+<div class="widget" data-section="notepad">
+<div class="widget-icon">
+<i class="fas fa-sticky-note"></i>
+</div>
+<span>Notas</span>
+</div>
+<div class="widget" data-section="globe">
+<div class="widget-icon">
+<i class="fas fa-globe"></i>
+</div>
+<span>Mundial</span>
+</div>
+</div>
+</div>
+
+<div class="glass-card notepad-quick-card">
+<div class="card-header">
+<h3>Notepad Rápido</h3>
+<i class="fas fa-sticky-note"></i>
+</div>
+<div class="notepad-quick-container">
+<textarea class="notepad-quick-textarea" placeholder="Escribe una nota rápida aquí..."></textarea>
+<div class="notepad-quick-actions">
+<button class="sky-button secondary-button notepad-quick-save">Guardar</button>
+<button class="sky-button primary-button notepad-quick-view">Ver todas</button>
+</div>
+<div class="notepad-quick-list">
+<div class="quick-note-item">
+<p>Reunión con el equipo a las 16:30 - No olvidar revisar el reporte mensual.</p>
+<span class="quick-note-date">Hoy - 13:45</span>
+</div>
+<div class="quick-note-item">
+<p>Llamar al proveedor para confirmar entrega del viernes.</p>
+<span class="quick-note-date">Ayer - 17:20</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="widgets-header">
+<h2>Zonas Horarias</h2>
+<div class="widgets-actions">
+<button class="sky-button small-button">
+<i class="fas fa-plus"></i>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+
+<div class="glass-card world-time-card">
+<div class="world-time-header">
+<div class="world-time-filter">
+<button class="tab-button active">Favoritos</button>
+<button class="tab-button">Recientes</button>
+<button class="tab-button">Todas</button>
+</div>
+<div class="world-time-search">
+<input type="text" placeholder="Buscar ciudad...">
+<i class="fas fa-search"></i>
+</div>
+</div>
+<div class="world-time-grid">
+<div class="world-time-item">
+<div class="time-city">Madrid</div>
+<div class="time-info">
+<div class="time-value">21:57</div>
+<div class="time-offset">UTC+02:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+<div class="world-time-item active">
+<div class="time-city">Lima</div>
+<div class="time-info">
+<div class="time-value">10:57</div>
+<div class="time-offset">UTC-05:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+<div class="world-time-item">
+<div class="time-city">Tokyo</div>
+<div class="time-info">
+<div class="time-value">00:57</div>
+<div class="time-offset">UTC+09:00</div>
+</div>
+<div class="time-day">Miércoles</div>
+</div>
+<div class="world-time-item">
+<div class="time-city">New York</div>
+<div class="time-info">
+<div class="time-value">11:57</div>
+<div class="time-offset">UTC-04:00</div>
+</div>
+<div class="time-day">Martes</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 2. Calculadoras Laborales -->
+<section id="calculators" class="section">
+<div class="calculators-grid">
+<!-- Box 1: Calcular tiempo en empresa con formato completo -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Tiempo en Empresa (Completo)</h3>
+<i class="fas fa-business-time"></i>
+</div>
+<div class="calc-form" id="company-time-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-time">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-time-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 2: Calcular años en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Años en Empresa</h3>
+<i class="fas fa-calendar-alt"></i>
+</div>
+<div class="calc-form" id="company-years-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-years">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-years-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 3: Calcular meses en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Meses en Empresa</h3>
+<i class="fas fa-calendar-day"></i>
+</div>
+<div class="calc-form" id="company-months-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-months">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-months-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 4: Calcular semestres, trimestres y cuatrimestres -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Períodos en Empresa</h3>
+<i class="fas fa-chart-bar"></i>
+</div>
+<div class="calc-form" id="company-periods-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-periods">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-periods-result">
+<div class="result-periods">
+<div class="period-item">
+<div class="period-type">Trimestres:</div>
+<div class="period-value">-</div>
+</div>
+<div class="period-item">
+<div class="period-type">Cuatrimestres:</div>
+<div class="period-value">-</div>
+</div>
+<div class="period-item">
+<div class="period-type">Semestres:</div>
+<div class="period-value">-</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Box 5: Calcular semanas en la empresa -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Semanas en Empresa</h3>
+<i class="fas fa-calendar-week"></i>
+</div>
+<div class="calc-form" id="company-weeks-calc">
+<div class="form-group">
+<label>Fecha de inicio</label>
+<input type="date" class="sky-input" name="start-date">
+</div>
+<div class="form-group">
+<label>Fecha actual/final</label>
+<input type="date" class="sky-input" name="end-date">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="company-weeks">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="company-weeks-result">
+<div class="result-value">Total: -</div>
+<div class="result-detail">Ingrese fechas para calcular</div>
+</div>
+</div>
+</div>
+
+<!-- Box 6: Calcular horas laborales -->
+<div class="glass-card calc-card">
+<div class="card-header">
+<h3>Horas Laborales</h3>
+<i class="fas fa-clock"></i>
+</div>
+<div class="calc-form" id="hours-calc">
+<div class="form-group">
+<label>Hora de entrada</label>
+<input type="time" class="sky-input" name="start-time" value="09:00">
+</div>
+<div class="form-group">
+<label>Hora de salida</label>
+<input type="time" class="sky-input" name="end-time" value="18:00">
+</div>
+<div class="form-group">
+<label>Pausas (minutos)</label>
+<input type="number" class="sky-input" name="break-time" value="60">
+</div>
+<button class="sky-button primary-button calc-button" data-calc="hours">
+<i class="fas fa-calculator"></i>
+<span>Calcular</span>
+</button>
+<div class="result" id="hours-result">Total: 8 horas</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3. Globo Terráqueo -->
+<section id="globe" class="section">
+<div class="globe-container">
+<div class="glass-card globe-card">
+<div class="globe-wrapper">
+<div class="globe-3d">
+<!-- Aquí iría el globo 3D renderizado -->
+<div class="globe-placeholder">
+<div class="globe-overlay"></div>
+</div>
+</div>
+</div>
+<div class="day-night-indicator">
+<div class="day-side">Día</div>
+<div class="night-side">Noche</div>
+</div>
+</div>
+<div class="glass-card timezone-card">
+<div class="card-header">
+<h3>Zonas Horarias</h3>
+<i class="fas fa-clock"></i>
+</div>
+<div class="timezone-search">
+<input type="text" class="sky-input" placeholder="Buscar ciudad...">
+<button class="sky-button icon-button">
+<i class="fas fa-search"></i>
+</button>
+</div>
+<div class="timezone-list">
+<div class="timezone-item active">
+<div class="timezone-info">
+<div class="timezone-city">Madrid</div>
+<div class="timezone-offset">UTC+02:00</div>
+</div>
+<div class="timezone-time">21:57</div>
+</div>
+<div class="timezone-item">
+<div class="timezone-info">
+<div class="timezone-city">New York</div>
+<div class="timezone-offset">UTC-04:00</div>
+</div>
+<div class="timezone-time">11:57</div>
+</div>
+<div class="timezone-item">
+<div class="timezone-info">
+<div class="timezone-city">Tokyo</div>
+<div class="timezone-offset">UTC+09:00</div>
+</div>
+<div class="timezone-time">00:57</div>
+</div>
+<button class="sky-button secondary-button add-timezone">
+<i class="fas fa-plus"></i>
+<span>Añadir Zona</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. Bloc de notas -->
+<section id="notepad" class="section">
+<div class="notepad-container">
+<div class="glass-card notepad-sidebar">
+<div class="notepad-actions">
+<button class="sky-button primary-button new-note-btn">
+<i class="fas fa-plus"></i>
+<span>Nueva nota</span>
+</button>
+</div>
+<div class="notepad-search">
+<input type="text" class="sky-input" placeholder="Buscar notas...">
+<i class="fas fa-search"></i>
+</div>
+<div class="notes-list">
+<div class="note-item active" data-id="note1">
+<div class="note-title">Reunión de proyecto</div>
+<div class="note-preview">Puntos a tratar en la reunión del lunes...</div>
+<div class="note-date">20 de mayo, 2025</div>
+</div>
+<div class="note-item" data-id="note2">
+<div class="note-title">Lista de tareas</div>
+<div class="note-preview">1. Revisar documentación 2. Contactar cliente...</div>
+<div class="note-date">19 de mayo, 2025</div>
+</div>
+<div class="note-item" data-id="note3">
+<div class="note-title">Ideas para vacaciones</div>
+<div class="note-preview">Posibles destinos: Barcelona, Tokyo...</div>
+<div class="note-date">15 de mayo, 2025</div>
+</div>
+</div>
+</div>
+<div class="glass-card notepad-editor">
+<div class="editor-header">
+<input type="text" class="editor-title" value="Reunión de proyecto">
+<div class="editor-actions">
+<button class="action-button" data-tooltip="Guardar">
+<i class="fas fa-save"></i>
+</button>
+<button class="action-button" data-tooltip="Eliminar">
+<i class="fas fa-trash"></i>
+</button>
+</div>
+</div>
+<div class="editor-toolbar">
+<button class="editor-tool" data-command="bold">
+<i class="fas fa-bold"></i>
+</button>
+<button class="editor-tool" data-command="italic">
+<i class="fas fa-italic"></i>
+</button>
+<button class="editor-tool" data-command="underline">
+<i class="fas fa-underline"></i>
+</button>
+<button class="editor-tool" data-command="insertUnorderedList">
+<i class="fas fa-list-ul"></i>
+</button>
+<button class="editor-tool" data-command="insertOrderedList">
+<i class="fas fa-list-ol"></i>
+</button>
+<button class="editor-tool" data-command="createLink">
+<i class="fas fa-link"></i>
+</button>
+<select class="editor-select">
+<option value="normal">Normal</option>
+<option value="h1">Título 1</option>
+<option value="h2">Título 2</option>
+<option value="h3">Título 3</option>
+</select>
+</div>
+<div class="editor-content" contenteditable="true">
+<p>Puntos a tratar en la reunión del lunes:</p>
+<ul>
+<li>Revisión de avances del proyecto</li>
+<li>Planificación para la siguiente fase</li>
+<li>Distribución de tareas</li>
+<li>Discusión sobre el presupuesto</li>
+</ul>
+<p>Recordar llevar la documentación actualizada y las estadísticas del mes anterior.</p>
+<p>La reunión está programada para las <b>10:30</b> en la sala de conferencias.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. Calculadora de Tiempo -->
+<section id="time-calc" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<!-- Resto de secciones (6-13) con estructura básica -->
+<section id="converters" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="epoch" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="calendar" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="timer" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="stopwatch" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="movies" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="dimensions" class="section">
+<!-- Contenido de la sección -->
+</section>
+
+<section id="settings" class="section">
+<!-- Contenido de la sección -->
+</section>
+</div>
+</main>
+</div>
+</body>
 </html>
