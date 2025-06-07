@@ -1,27 +1,23 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Mensajes de wilder - acceso controlado
-    match /smiles/wilder {
-      allow read: if true; // Lectura pública para mostrar mensaje
-      allow write: if false; // Solo tú puedes escribir via admin
-    }
-    
-    // Datos de usuarios de la app
-    match /users/{userId} {
-      allow read, write: if request.auth != null 
-        && request.auth.uid == userId;
-    }
-    
-    // Configuración de timezone y datos públicos
-    match /public/{document} {
-      allow read: if true;
-      allow write: if false;
-    }
-    
-    // Bloquear todo lo demás
+  
     match /{document=**} {
-      allow read, write: if false;
-    }
+      allow read, write: if request.auth != null; 
+    } //General y todas bds con Auth
+    
+    match /smiles/{document} {
+      allow read: if true; 
+      allow write: if true; 
+      //allow create, delete: if true; 
+      //allow update: if request.auth != null; 
+    } // Consulta para validar, crear, eliminar publico.Actualizar solo Autenticados
+         
+    match /publico/{document} {
+      allow read: if true;
+      allow write: if true; 
+    } // Acceso lectura general 
+    
   }
 }
