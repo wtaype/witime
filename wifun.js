@@ -88,7 +88,7 @@ function relojDigital() {
 }
 $('.estacion-text').text(Tiempo('estacion')); // Para estacion
 $('.timezone-text').text(Tiempo('gmt')); //Para gmt del tiempo
-$('.location-text').text(wiip('miciudad'));  // El region y pais 
+wiip(data => $('.location-text').text(`${data.region}, ${data.country}`)); 
 calendario('.calendarioMain'); // Calendario principal 
 
 // INFORMACION RAPIDA 
