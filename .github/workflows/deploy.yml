@@ -1,4 +1,4 @@
-name: 🚀 Deploy WiTime to GitHub Pages + Firebase
+name: 🚀 witime Deploy  to GitHub Pages + Firebase 
 
 on:
   push:

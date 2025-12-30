@@ -1,645 +1,270 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="theme-color" content="#0EBEFF">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Smiles - Plataforma de beneficios exclusivos. Únete y disfruta descuentos únicos.">
-<meta name="keywords" content="beneficios, descuentos, ofertas, recompensas">
-<link href='/logo.png' rel='icon' type='image/x-icon'/>
-<link rel="stylesheet" href="./style.css">
-<script type="module" src="./main.js" defer></script>
-<title>Smiles - Beneficios Exclusivos</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/smile.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WiTiempo es una aplicación diseñada para compartir y aprender más sobre la palabra de Dios con propósito de fortalecer la fe." />
+  <link rel="canonical" href="https://wtaype.github.io/witime/" />
+  <title>WiTiempo</title>
+<style>
+  
+:root {
+  /* Font Sizes */
+  --fz_s1: clamp(0.625rem, 0.8vh, 0.7rem);
+  --fz_s2: clamp(0.675rem, 0.85vh, 0.75rem);
+  --fz_s3: clamp(0.725rem, 0.9vh, 0.8rem);
+  --fz_s4: clamp(0.775rem, 1vh, 0.85rem);
+  --fz_m: clamp(0.8rem, 1.05vh, 0.9rem);
+  --fz_m1: clamp(0.85rem, 1.1vh, 0.95rem);
+  --fz_m2: clamp(0.9rem, 1.15vh, 1rem);
+  --fz_m3: clamp(0.95rem, 1.2vh, 1.05rem);
+  --fz_m4: clamp(1rem, 1.3vh, 1.1rem);
+  --fz_m5: clamp(1.15rem, 1.5vh, 1.25rem);
+  --fz_l1: clamp(1.5rem, 2vh, 1.7rem);
+  --fz_l2: clamp(1.8rem, 2.3vh, 2rem);
+  --fz_x1: clamp(2.2rem, 3vh, 2.8rem);
+  --fz_x2: clamp(2.5rem, 3.6vh, 3.5rem);
+  --fz_x3: clamp(2.9rem, 5vh, 3.9rem);
+  --fz_x4: clamp(3.3rem, 5.9vh, 4.3rem);
+  --fz_y1: clamp(3rem, 14vh, 8rem);
+
+  /* Box Shadows */
+  --bs_m: 0 0 0.3vh 0.1vh var(--F);
+  --bs_l: 0 0.4vh 0.8vh rgba(0,0,0,0.15);
+  --bs_s: 0 0.07vw 0.11vw 0 #c4c5c6, 0 0.06vw 0.16vw 0.06vw #e1e2e2;
+  --bs_1: 0 0.2vw 1vw rgba(0,0,0,0.1);
+
+  /* Transitions */
+  --tr_s: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --tr_m: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --tr_f: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Font Families */
+  --ff_P: 'Poppins', 'Segoe UI', system-ui;
+  --ff_Q: 'Quicksand', 'Segoe UI', system-ui;
+  --ff_R: 'Rubik', 'Segoe UI', system-ui;
+
+  /* Gradients */
+  --gradient-dia: linear-gradient(135deg, #0EBEFF 0%, #29C72E 100%);
+  --gradient-noche: linear-gradient(135deg, #21273B 0%, #7000FF 100%);
+
+  /* Base Colors */
+  --F: #fff;
+  --0: #000;
+  --D: #ddd;
+  --G: #374151;
+  --success: #3cd741;
+  --error: #ff3849;
+  --warning: #ffa726;
+  --info: #00a8e6;
+  --offline: #ddd;
+  --Cielo: #0EBEFF;
+  --Dulce: #FF5C69;
+  --Paz: #29C72E;
+  --Mora: #7000FF;
+  --Futuro: #21273B;
+
+  /* Background Image */
+  --bgim: url('https://d35aaqx5ub95lt.cloudfront.net/images/star-pattern.svg');
+
+  /* Theme Cielo (Default) */
+  --bg: #ccefff;
+  --wb: #e5f7ff;
+  --tx: #000;
+  --txa: #FFF;
+  --txe: #000;
+  --hv: #00a8e6;
+  --hva: #1873cd;
+  --mco: #1978d7;
+  --bg1: #ffffff26;
+  --bg2: #1978d7;
+  --bg3: #e5f7ff;
+  --bg4: rgba(25, 120, 215, 0.1);
+  --bg5: rgba(25, 120, 215, 0.2);
+  --bg6: rgba(204, 239, 255, 0.5);
+  --bg7: #FFF; 
+  --bg8: #FFF;
+  --bg9: #12a3b5;
+  --bg10: #18c5c5;
+  --bg11: #d4f0ff;
+  --bg12: #0084b8;
+}
+:root[data-theme="Dulce"] {
+  --bg: #ffccd1;
+  --wb: #ffebed;
+  --tx: #000;
+  --txa: #FFF;
+  --txe: #000;
+  --hv: #ff7a85;
+  --hva: #ff3849;
+  --mco: #ff3849;
+  --bg1: #ffffff61;
+  --bg2: #ff3849;
+  --bg3: #ffebed;
+  --bg4: rgba(255, 56, 73, 0.1);
+  --bg5: rgba(255, 56, 73, 0.2);
+  --bg6: rgba(255, 204, 209, 0.5);
+  --bg7: #FFF; 
+  --bg8: #FFF;
+  --bg9: #ff808a;
+  --bg10: #ff99a1;
+  --bg11: #ffd4d7;
+  --bg12: #ff5c69;
+}
+:root[data-theme="Paz"] {
+  --bg: #ccffce;
+  --wb: #ebffeb;
+  --tx: #000;
+  --txa: #FFF;
+  --txe: #000;
+  --hv: #3cd741;
+  --hva: #25b62a;
+  --mco: #25b62a;
+  --bg1: #ffffff42;
+  --bg2: #25b62a;
+  --bg3: #ebffeb;
+  --bg4: rgba(37, 182, 42, 0.1);
+  --bg5: rgba(37, 182, 42, 0.2);
+  --bg6: rgba(204, 255, 206, 0.5);
+  --bg7: #FFF; 
+  --bg8: #FFF;
+  --bg9: #0ccf6a;
+  --bg10: #1cf284;
+  --bg11: #d4ffd6;
+  --bg12: #1fa832;
+}
+:root[data-theme="Mora"] {
+  --bg: #e4ccff;
+  --wb: #f4ebff;
+  --tx: #000;
+  --txa: #FFF;
+  --txe: #000;
+  --hv: #9442ff;
+  --hva: #5f00db;
+  --mco: #6a00f5;
+  --bg1: #ffffff61;
+  --bg2: #6a00f5;
+  --bg3: #f4ebff;
+  --bg4: rgba(106, 0, 245, 0.1);
+  --bg5: rgba(106, 0, 245, 0.2);
+  --bg6: rgba(228, 204, 255, 0.5);
+  --bg7: #FFF; 
+  --bg8: #FFF;
+  --bg9: #8c42ff;
+  --bg10: #a666ff;
+  --bg11: #ead4ff;
+  --bg12: #5f00db;
+}
+:root[data-theme="Futuro"] {
+  --bg: #1d273f;
+  --wb: #2a385b;
+  --tx: #fff;
+  --txa: #00f3ff;
+  --txe: #3e496f;
+  --hv: #4d5a89;
+  --hva: #3e496f;
+  --mco: #3e496f;
+  --bg1: #ffffff26;
+  --bg2: #00f3ff;
+  --bg3: #2a385b;
+  --bg4: rgba(0, 243, 255, 0.1);
+  --bg5: rgba(0, 243, 255, 0.2);
+  --bg6: rgba(42, 56, 91, 0.5); 
+  --bg7: #00f3ff; 
+  --bg8: #4d5a89;
+  --bg9: #3e496f;
+  --bg10: #4d5a89;
+  --bg11: #e9ecef;
+  --bg12: #868e96;
+}
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+* {
+  font-family: var(--ff_P);
+  scrollbar-width: thin;
+  scrollbar-color: var(--mco) var(--bg);
+  font-size: var(--fz_m2);
+}
+a {
+  text-decoration: none;
+}
+body {
+  background: var(--bg);
+}
+#wiTema {
+  display: none;
+  flex-direction: column;
+  gap: 0.2vh;
+  padding: 1.5vh 1vh;
+  background: var(--bg1);
+  border-radius: 0.8vh;
+  position: fixed;
+  top: 50%;
+  left: 0;
+}
+.tema {
+  width: 3vh;
+  height: 2.9vh;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--tr_f);
+  border: 2px solid transparent;
+  position: relative;
+}
+.tema:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 1vh rgba(0,0,0,0.3);
+}
+.tema.mtha {
+  border-color: var(--F);
+  box-shadow: 0 0 1.5vh rgba(255,255,255,0.6), inset 0 0 0.5vh rgba(255,255,255,0.3);
+  transform: scale(1.2);
+}
+.tema[data-ths^="Cielo"] { background: var(--Cielo); }
+.tema[data-ths^="Dulce"] { background: var(--Dulce); }
+.tema[data-ths^="Paz"] { background: var(--Paz); }
+.tema[data-ths^="Mora"] { background: var(--Mora); }
+.tema[data-ths^="Futuro"] { background: var(--Futuro); }
+.foo {
+  width: 100%;
+  text-align: center;
+  padding-block: 1.5vh 1vh;
+  background: var(--wb);
+  border-radius: 1vh 1vh 0 0;
+}
+.foo * {
+  font-size: var(--fz_s2);
+  margin-inline: .3vh;
+}
+.foo a {color: var(--bg2);}
+.foo i {color: var(--mco);}
+
+</style>
+<style>@import url(/smiles/main/tiempos.css);</style>
 </head>
 <body>
-
-<div class="app-container">
-<!-- Background Gradient Container -->
-<div class="bg-gradient"></div>
-<div class="neon-lines"></div>
-
-<!-- Sidebar Navigation -->
-<nav class="sidebar">
-<div class="logo" id="logo">
-<div class="logo-icon">
-<i class="far fa-clock"></i>
-</div>
-<span class="logo-text">WiTime</span>
-</div>
-<div class="nav-links">
-<a href="#dashboard" class="navlk active"><i class="fas fa-home"></i>
-<span class="nav-title">Dashboard</span>
-</a>
-<a href="#calculators" class="navlk"><i class="fas fa-calculator"></i>
-<span class="nav-title">Calculadoras</span>
-</a>
-<a href="#globe" class="navlk"><i class="fas fa-globe"></i>
-<span class="nav-title">Globo Terráqueo</span>
-</a>
-<a href="#time" class="navlk"><i class="fas fa-clock"></i>
-<span class="nav-title">Calc. Tiempo</span>
-</a>
-<a href="#notepad" class="navlk"><i class="fas fa-sticky-note"></i>
-<span class="nav-title">Bloc de notas</span>
-</a>
-<a href="#converters" class="navlk"><i class="fas fa-exchange-alt"></i>
-<span class="nav-title">Conversores</span>
-</a>
-<a href="#epoch" class="navlk"><i class="fas fa-server"></i>
-<span class="nav-title">Epoch UTC</span>
-</a>
-<a href="#calendar" class="navlk"><i class="fas fa-calendar-alt"></i>
-<span class="nav-title">Calendario</span>
-</a>
-<a href="#timer" class="navlk"><i class="fas fa-hourglass"></i>
-<span class="nav-title">Temporizador</span>
-</a>
-<a href="#stopwatch" class="navlk"><i class="fas fa-stopwatch"></i>
-<span class="nav-title">Cronómetro</span>
-</a>
-<a href="#movies" class="navlk"><i class="fas fa-film"></i>
-<span class="nav-title">Películas</span>
-</a>
-<a href="#dimensions" class="navlk"><i class="fas fa-rocket"></i>
-<span class="nav-title">Dimensiones</span>
-</a>
-<a href="#settings" class="navlk"><i class="fas fa-cog"></i>
-<span class="nav-title">Ajustes</span>
-</a>
-<div class="witemas dpf"></div>
-</div>
-
-</nav>
-
-<!-- Main Content Area -->
-<main class="main-content">
-<!-- Header with search -->
-<header class="top-bar">
-<div class="menu-toggle">
-<i class="fas fa-bars"></i>
-</div>
-<div class="page-title">
-<h1>Dashboard</h1>
-<p>Bienvenido a tu centro de control del tiempo</p>
-</div>
-<div class="right-controls">
-<button class="sky-button primary-button registrar">Registrar</button>
-<button class="sky-button primary-button login">Login</button>
-</div>
-</header>
-
-<!-- Section Container -->
-<div class="section-container">
-<!-- 1. Dashboard Principal -->
-<section id="dashboard" class="section active">
-<div class="main-clock-widget dpg2">
-<div class="glass-card big-clock">
-<div class="clock-container">
-<div class="analog-clock">
-<div class="clock-face">
-<div class="clock-markings"></div>
-<div class="hour-hand"></div>
-<div class="minute-hand"></div>
-<div class="second-hand"></div>
-<div class="clock-center"></div>
-</div>
-</div>
-<div class="clock-info">
-<div class="time-wrapper">
-<div class="digital-time">15:57</div>
-<div class="digital-seconds">53</div>
-</div>
-<div class="date-display">Martes, 20 de Mayo de 2025</div>
-<div class="location-info">
-<i class="fas fa-map-marker-alt"></i>
-<span class="location-text">Lima, PE</span>
-</div>
-<div class="timezone"><i class="fas fa-globe"></i>
-<span class="timezone-text"></span>
-</div>
-<div class="timezone"><i class="fas fa-tree"></i>
-<span class="estacion-text"></span>
-</div>
-</div>
-</div>
-</div> <!-- Para el Reloj-->
-<div class="calendarioMain glass-card">
-
-</div> <!-- Para el Calendario-->
-</div>
-
-<div class="widgets-header">
-<h2>Resumen Temporal</h2>
-<div class="widgets-actions">
-<button class="circular-button refresh-btn"><i class="fas fa-sync-alt"></i></button>
-<button class="circular-button"><i class="fas fa-ellipsis-v"></i></button>
-</div>
-</div>
-
-<div class="dashboard-widgets">
-<!-- INFORMACION RAPIDO -->
-<div class="glass-card info-card">
-<div class="card-header">
-<h3>Información Rápida</h3>
-<i class="fas fa-info-circle"></i>
-</div>
-<div class="info-grid">
-
-<div class="info-item">
-<span class="info-label">Fecha ISO</span>
-<span class="info-value" id="iso-date">2025-05-20</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Día del año</span>
-<span class="info-value" id="day-of-year">140 / 365</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">GMT actual</span>
-<span class="info-value" id="gmt-time">GMT+0:00</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Duración del día</span>
-<span class="info-value" id="day-duration">12h 32m</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Días en el mes</span>
-<span class="info-value" id="days-in-month">31</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">UTC actual</span>
-<span class="info-value" id="utc-time">2025-05-20 15:57:53</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Semana del año</span>
-<span class="info-value" id="week-of-year">21</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Milisegundos</span>
-<span class="info-value" id="milliseconds">1747353473000</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Trimestre</span>
-<span class="info-value" id="quarter">Q2</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Timestamp Unix</span>
-<span class="info-value" id="unix-timestamp">1747353473</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Hemisferio </span>
-<span class="info-value" id="hemisferio">--</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Estación</span>
-<span class="info-value" id="season">Primavera</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Fase lunar</span>
-<span class="info-value" id="moon-phase">Luna gibosa menguante</span>
-</div>
-
-<div class="info-item">
-<span class="info-label">Año bisiesto</span>
-<span class="info-value" id="leap-year">No</span>
-</div>
-
-</div>
-</div>
-
-<!-- ZONAS HORARIAS OPTIMIZADO -->
-<div class="glass-card widgets-card">
-<div class="card-header">
-<h3>Zonas Horarias</h3> <i class="fas fa-globe"></i>
-</div>
-<div class="world-time-grid">
-
-<div class="world-time-item active" data-tz="America/Lima">
-<div class="time-city" id="flag_PE"> Lima</div>
-<div class="time-info">
-<div class="time-value">--:--:--</div>
-<div class="time-offset">UTC+00:00</div>
-</div>
-<div class="time-day">Cargando...</div>
-</div>
-
-<div class="world-time-item" data-tz="America/New_York">
-<div class="time-city" id="flag_US"> New York</div>
-<div class="time-info">
-<div class="time-value">--:--:--</div>
-<div class="time-offset">UTC+00:00</div>
-</div>
-<div class="time-day">Cargando...</div>
-</div>
-
-<div class="world-time-item" data-tz="Europe/Madrid">
-<div class="time-city" id="flag_ES"> Madrid</div>
-<div class="time-info">
-<div class="time-value">--:--:--</div>
-<div class="time-offset">UTC+00:00</div>
-</div>
-<div class="time-day">Cargando...</div>
-</div>
-
-<div class="world-time-item" data-tz="Asia/Seoul">
-<div class="time-city" id="flag_KR">Seúl</div>
-<div class="time-info">
-<div class="time-value">--:--:--</div>
-<div class="time-offset">UTC+00:00</div>
-</div>
-<div class="time-day">Cargando...</div>
-</div>
-
-</div>
-</div>
-
-<!-- NOTEPAD RAPIDO -->
-
-<div class="glass-card ntsRapidas">
-<div class="card-header"><h3>Notepad Rápido</h3><i class="fas fa-sticky-note"></i></div>
-<div class="notasRapidas">
- <textarea id="ntRapida" class="txe txen" placeholder="Escribe tus notas rápidas"></textarea>
- <div class="ntBotones">
-  <div class="sky-button secondary-button ntGuardar">Guardar</div>
-  <div class="sky-button secondary-button ntCancelar">Cancelar</div>
- </div>
- <div class="ntListas"></div>
-
-</div>
-</div>
-</div> 
-</section>
-
-<!-- 2. Calculadoras Laborales -->
-<section id="calculators" class="wkcalc section">
-<div class="calculators-grid">
-<!-- Box 1: Calcular tiempo en empresa con formato completo -->
-<div class="glass-card calc-card" data-formato="años meses días">
-<div class="card-header">
-<h3>Tiempo en Empresa (Completo)</h3>
-<i class="fas fa-business-time"></i>
-</div>
-<div class="calc-form" id="company-time-calc">
-<div class="form-group">
-<label>Fecha de inicio</label>
-<input id="txen11" type="date" class="sky-input fecha-inicio" name="start-date">
-</div>
-<div class="form-group">
-<label>Fecha actual/final</label>
-<input id="txen12" type="date" class="sky-input fecha-fin fecha-actual" name="end-date">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="company-time">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result" id="company-time-result">
-<div class="result-detail" id="result10">Ingrese fechas para calcular</div>
-</div>
-</div>
-</div>
-
-<!-- Box 2: Calcular años en la empresa -->
-<div class="glass-card calc-card" data-formato="años">
-<div class="card-header">
-<h3>Años en Empresa</h3>
-<i class="fas fa-calendar-alt"></i>
-</div>
-<div class="calc-form" id="company-years-calc">
-<div class="form-group">
-<label>Fecha de inicio</label>
-<input id="txen21" type="date" class="sky-input fecha-inicio" name="start-date">
-</div>
-<div class="form-group">
-<label>Fecha actual/final</label>
-<input id="txen22" type="date" class="sky-input fecha-fin fecha-actual" name="end-date">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="company-years">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result" id="company-years-result">
-<div class="result-detail" id="result20">Ingrese fechas para calcular</div>
-</div>
-</div>
-</div>
-
-<!-- Box 3: Calcular meses en la empresa -->
-<div class="glass-card calc-card" data-formato="meses">
-<div class="card-header">
-<h3>Meses en Empresa</h3>
-<i class="fas fa-calendar-day"></i>
-</div>
-<div class="calc-form" id="company-months-calc">
-<div class="form-group">
-<label>Fecha de inicio</label>
-<input id="txen31" type="date" class="sky-input fecha-inicio" name="start-date">
-</div>
-<div class="form-group">
-<label>Fecha actual/final</label>
-<input id="txen32" type="date" class="sky-input fecha-fin fecha-actual" name="end-date">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="company-months">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result" id="company-months-result">
-<div class="result-detail">Ingrese fechas para calcular</div>
-</div>
-</div>
-</div>
-
-<!-- Box 4: Calcular semestres, trimestres y cuatrimestres -->
-<div class="glass-card calc-card" data-formato="años meses días">
-<div class="card-header">
-<h3>Períodos en Empresa</h3>
-<i class="fas fa-chart-bar"></i>
-</div>
-<div class="calc-form" id="company-periods-calc">
-<div class="form-group">
-<label>Fecha de inicio</label>
-<input id="txen41" type="date" class="sky-input fecha-inicio" name="start-date">
-</div>
-<div class="form-group">
-<label>Fecha actual/final</label>
-<input id="txen42" type="date" class="sky-input fecha-fin fecha-actual" name="end-date">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="company-periods">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result" id="company-periods-result">
-<div class="result-periods">
-<div class="period-item">
-<div class="period-type">Trimestres:</div>
-<div class="period-value">-</div>
-</div>
-<div class="period-item">
-<div class="period-type">Cuatrimestres:</div>
-<div class="period-value">-</div>
-</div>
-<div class="period-item">
-<div class="period-type">Semestres:</div>
-<div class="period-value">-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Box 5: Calcular semanas en la empresa -->
-<div class="glass-card calc-card" data-formato="semanas">
-<div class="card-header">
-<h3>Semanas en Empresa</h3>
-<i class="fas fa-calendar-week"></i>
-</div>
-<div class="calc-form" id="company-weeks-calc">
-<div class="form-group">
-<label>Fecha de inicio</label>
-<input id="txen51" type="date" class="sky-input fecha-inicio" name="start-date">
-</div>
-<div class="form-group">
-<label>Fecha actual/final</label>
-<input id="txen52" type="date" class="sky-input fecha-fin fecha-actual" name="end-date">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="company-weeks">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result" id="company-weeks-result">
-<div class="result-detail">Ingrese fechas para calcular</div>
-</div>
-</div>
-</div>
-
-<!-- Box 6: Calcular horas laborales -->
-<div class="glass-card calc-card" data-formato="horas minutos">
-<div class="card-header">
-<h3>Horas Laborales</h3>
-<i class="fas fa-clock"></i>
-</div>
-<div class="calc-form" id="hours-calc">
-<div class="form-group">
-<label>Hora de entrada</label>
-<input id="txen61" type="time" class="sky-input fecha-inicio" name="start-time" value="09:00">
-</div>
-<div class="form-group">
-<label>Hora de salida</label>
-<input id="txen62" type="time" class="sky-input fecha-fin" name="end-time" value="18:00">
-</div>
-<div class="form-group">
-<label>Pausas (minutos)</label>
-<input id="txen63" type="number" class="sky-input" name="break-time" value="60">
-</div>
-<button class="sky-button primary-button calc-button" data-calc="hours">
-<i class="fas fa-calculator"></i>
-<span>Calcular</span>
-</button>
-<div class="result result-detail" id="hours-result">Total: 8 horas</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- 3. Globo Terráqueo -->
-<section id="globe" class="section">
-<div class="globe-container">
-<div class="glass-card globe-card">
-<div class="globe-wrapper">
-<div class="globe-3d">
-<!-- Aquí iría el globo 3D renderizado -->
-<div class="globe-placeholder">
-<div class="globe-overlay"></div>
-</div>
-</div>
-</div>
-<div class="day-night-indicator">
-<div class="day-side">Día</div>
-<div class="night-side">Noche</div>
-</div>
-</div>
-<div class="glass-card timezone-card">
-<div class="card-header">
-<h3>Zonas Horarias</h3>
-<i class="fas fa-clock"></i>
-</div>
-<div class="world-time-search">
-<input id="txen2" type="text" placeholder="Buscar ciudad...">
-<i class="fas fa-search"></i>
-</div>
-<div class="timezone-list">
-
-<div class="timezone-item active">
-<div class="timezone-info">
-<div class="timezone-city">Madrid</div>
-<div class="timezone-offset">UTC+02:00</div>
-</div>
-<div class="timezone-time">21:57</div>
-</div>
-
-<div class="timezone-item">
-<div class="timezone-info">
-<div class="timezone-city">New York</div>
-<div class="timezone-offset">UTC-04:00</div>
-</div>
-<div class="timezone-time">11:57</div>
-</div>
-
-<div class="timezone-item">
-<div class="timezone-info">
-<div class="timezone-city">Tokyo</div>
-<div class="timezone-offset">UTC+09:00</div>
-</div>
-<div class="timezone-time">00:57</div>
-</div>
-
-<button class="sky-button secondary-button add-timezone">
-<i class="fas fa-plus"></i>
-<span>Añadir Zona</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-
-<!-- 4. Bloc de notas -->
-<section id="notepad" class="section">
-<div class="notepad-container">
-<div class="glass-card notepad-sidebar">
-<div class="notepad-actions">
-<button class="sky-button primary-button new-note-btn">
-<i class="fas fa-plus"></i>
-<span>Nueva nota</span>
-</button>
-</div>
-<div class="notepad-search">
-<input type="text" class="sky-input" placeholder="Buscar notas...">
-<i class="fas fa-search"></i>
-</div>
-<div class="notes-list">
-<div class="note-item active" data-id="note1">
-<div class="note-title">Reunión de proyecto</div>
-<div class="note-preview">Puntos a tratar en la reunión del lunes...</div>
-<div class="note-date">20 de mayo, 2025</div>
-</div>
-<div class="note-item" data-id="note2">
-<div class="note-title">Lista de tareas</div>
-<div class="note-preview">1. Revisar documentación 2. Contactar cliente...</div>
-<div class="note-date">19 de mayo, 2025</div>
-</div>
-<div class="note-item" data-id="note3">
-<div class="note-title">Ideas para vacaciones</div>
-<div class="note-preview">Posibles destinos: Barcelona, Tokyo...</div>
-<div class="note-date">15 de mayo, 2025</div>
-</div>
-</div>
-</div>
-<div class="glass-card notepad-editor">
-<div class="editor-header">
-<input type="text" class="editor-title" value="Reunión de proyecto">
-<div class="editor-actions">
-<button class="action-button" data-tooltip="Guardar">
-<i class="fas fa-save"></i>
-</button>
-<button class="action-button" data-tooltip="Eliminar">
-<i class="fas fa-trash"></i>
-</button>
-</div>
-</div>
-<div class="editor-toolbar">
-<button class="editor-tool" data-command="bold">
-<i class="fas fa-bold"></i>
-</button>
-<button class="editor-tool" data-command="italic">
-<i class="fas fa-italic"></i>
-</button>
-<button class="editor-tool" data-command="underline">
-<i class="fas fa-underline"></i>
-</button>
-<button class="editor-tool" data-command="insertUnorderedList">
-<i class="fas fa-list-ul"></i>
-</button>
-<button class="editor-tool" data-command="insertOrderedList">
-<i class="fas fa-list-ol"></i>
-</button>
-<button class="editor-tool" data-command="createLink">
-<i class="fas fa-link"></i>
-</button>
-<select class="editor-select">
-<option value="normal">Normal</option>
-<option value="h1">Título 1</option>
-<option value="h2">Título 2</option>
-<option value="h3">Título 3</option>
-</select>
-</div>
-<div class="editor-content" contenteditable="true">
-<p>Puntos a tratar en la reunión del lunes:</p>
-<ul>
-<li>Revisión de avances del proyecto</li>
-<li>Planificación para la siguiente fase</li>
-<li>Distribución de tareas</li>
-<li>Discusión sobre el presupuesto</li>
-</ul>
-<p>Recordar llevar la documentación actualizada y las estadísticas del mes anterior.</p>
-<p>La reunión está programada para las <b>10:30</b> en la sala de conferencias.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- 5. Calculadora de Tiempo -->
-<section id="time-calc" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<!-- Resto de secciones (6-13) con estructura básica -->
-<section id="converters" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="epoch" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="calendar" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="timer" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="stopwatch" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="movies" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="dimensions" class="section">
-<!-- Contenido de la sección -->
-</section>
-
-<section id="settings" class="section">
-<!-- Contenido de la sección -->
-</section>
+  <!--DIOS ES MI SALVADOR[START V21 6289189647087236293]-->
 
 
-</div>
-</main>
-</div>
 
- <div class="miauth"></div><!-- Autenticación -->
+<main id="app"></main>
+
+<!--DIOS ES MI SALVADOR[END V21]-->
+<div id="wiTema">
+  <div class="tema mtha" data-ths="Cielo|#0EBEFF"></div>
+  <div class="tema" data-ths="Dulce|#FF5C69"></div>
+  <div class="tema" data-ths="Paz|#29C72E"></div>
+  <div class="tema" data-ths="Mora|#7000FF"></div>
+  <div class="tema" data-ths="Futuro|#21273B"></div>
+</div>
 </body>
+<script>
+(()=>{const d=document,h=d.documentElement,w=d.querySelector('#wiTema');if(!w)return;const ts=[...w.querySelectorAll('.tema')],m=d.querySelector('meta[name="theme-color"]')||d.head.appendChild(Object.assign(d.createElement('meta'),{name:'theme-color'})),st=t=>{const[n,c]=t.dataset.ths.split('|');h.dataset.theme=n;m.content=c;localStorage.wiTema=t.dataset.ths;ts.forEach(x=>x.classList.toggle('mtha',x===t))};w.addEventListener('click',e=>e.target.matches('.tema')&&st(e.target),{passive:!0});const i=w.querySelector(`[data-ths="${localStorage.wiTema}"]`)||ts[0];i&&st(i)})();
+</script>
+<script type="module" src="./smiles/main.js" defer></script> 
 </html>

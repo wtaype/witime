@@ -1,15 +1,31 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/wiitime/' : '/',
   build: {
+    outDir: 'dist',
+    minify: 'esbuild',
+    sourcemap: false,
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        smile: resolve(__dirname, 'smile.html'), 
-        smiletop: resolve(__dirname, 'smiletop.html') 
-      }
+      input: { main: resolve(__dirname, 'index.html') },
+      output: {
+        manualChunks: {
+          vendor: ['jquery'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore']
+        }
+      },
+      plugins: [{
+        name: 'minify-html',
+        generateBundle(_, b) {
+          for (const f in b) {
+            if (f.endsWith('.html') && b[f].type === 'asset') {
+              b[f].source = b[f].source.replace(/\n\s*/g, '').replace(/>\s+</g, '><').replace(/\s{2,}/g, ' ').replace(/<!--.*?-->/g, '').trim();
+            }
+          }
+        }
+      }]
     }
-  },
-  publicDir: 'public' 
-}); 
+  }, 
+  publicDir: 'public'
+}));
