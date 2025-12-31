@@ -135,7 +135,7 @@ export class Juego {
     this.setPeriodo(getPeriodoDia());
     this.setupEvents();
     this.startAudio();
-    this.iniciarSecuenciaMensajes();
+    this.enableAudioOnGesture();
     setInterval(() => {
       const base = parseInt($('.vel-num').text(), 10);
       const variacion = Math.floor(Math.random() * 3) - 1;
@@ -199,10 +199,22 @@ export class Juego {
   // --- AUDIO ---
   startAudio() {
     if (this.audio) {
+      this.audio.loop = true;
       this.audio.volume = 0.4;
-      const p = this.audio.play();
-      if (p !== undefined) p.catch(() => {});
+      this.audio.play().catch(() => {});
     }
+  }
+
+  enableAudioOnGesture() {
+    if (!this.audio) return;
+    const handler = () => {
+      this.audio.muted = false;
+      this.audio.play().catch(() => {});
+      document.removeEventListener('click', handler);
+      document.removeEventListener('keydown', handler);
+    };
+    document.addEventListener('click', handler, { once: true });
+    document.addEventListener('keydown', handler, { once: true });
   }
 
   // --- UI & CONTROLES ---

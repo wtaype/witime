@@ -96,7 +96,7 @@ export const autoTiempo = () => {
         </div>
       </div>
 
-      <audio id="motor-audio" loop>
+      <audio id="motor-audio" loop autoplay playsinline>
          <source src="https://raw.githubusercontent.com/geluksee/nice/main/paz.mp3" type="audio/mpeg">
       </audio>
     </div>
