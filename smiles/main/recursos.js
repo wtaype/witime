@@ -136,6 +136,7 @@ export class Juego {
     this.setupEvents();
     this.startAudio();
     this.enableAudioOnGesture();
+    this.iniciarSecuenciaMensajes();
     setInterval(() => {
       const base = parseInt($('.vel-num').text(), 10);
       const variacion = Math.floor(Math.random() * 3) - 1;
