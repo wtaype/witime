@@ -7,15 +7,15 @@ export let app = 'WiTime'
 export let lanzamiento = 2024;
 export let autor = '@wilder.taype';
 export let link = 'https://wtaype.github.io/';
-export let version = 'v16';
+export let version = 'v17';
 
 /** ACTUALIZACIÓN PRINCIPAL ONE DEV [START](1)
-git add . ; git commit -m "Actualizacion Principal v16.10.11" ; git push origin main
+git add . ; git commit -m "Actualizacion Principal v17.10.12" ; git push origin main
 
 // Actualizar main luego esto, pero si es mucho, solo esto. (2)
-git tag v16 -m "Version v16" ; git push origin v16
+git tag v17 -m "Version v17" ; git push origin v17
 
 // En caso de emergencia, para actualizar el Tag existente. (3)
-git tag -d v16 ; git tag v16 -m "Version v16 actualizada" ; git push origin v37 --force
+git tag -d v17 ; git tag v17 -m "Version v17 actualizada" ; git push origin v37 --force
  ACTUALIZACION TAG[END] */ 
 

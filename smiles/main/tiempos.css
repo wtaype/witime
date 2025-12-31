@@ -55,7 +55,7 @@ canvas {
   bottom: 0;
   width: 100%;
   height: 30%;
-  background: url('https://raw.githubusercontent.com/geluksee/nice/main/city-silhouette.png'); /* O un gradiente de montañas */
+  background: url('https://raw.githubusercontent.com/geluksee/nice/main/city-silhouette.png');
   background-size: cover;
   background-position: center bottom;
   opacity: 0.6;
@@ -69,18 +69,17 @@ canvas {
   width: 100%;
   height: 70%;
   transform-style: preserve-3d;
-  transform: rotateX(60deg); /* Inclina el suelo */
+  transform: rotateX(60deg);
   perspective-origin: 50% 0%;
   z-index: 2;
 }
 
 .pista {
   position: absolute;
-  top: -50%; /* Extender hacia el horizonte */
+  top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: #1a1a1a;
   background: radial-gradient(circle at 50% 0%, #2a2a2a 0%, #000000 80%);
 }
 
@@ -88,7 +87,7 @@ canvas {
 .grid-suelo {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent),
     linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 76%, transparent 77%, transparent);
   background-size: 100px 100px;
@@ -105,7 +104,7 @@ canvas {
   background: repeating-linear-gradient(to bottom, #fff 0, #fff 40px, transparent 40px, transparent 80px);
   box-shadow: 0 0 10px #fff;
   transform: translateX(-50%);
-  animation: mover-pista 0.5s linear infinite; /* Más rápido que el grid */
+  animation: mover-pista 0.5s linear infinite;
 }
 
 @keyframes mover-pista {
@@ -165,7 +164,7 @@ canvas {
   bottom: 0;
   width: 100%;
   height: 70px;
-  background: linear-gradient(180deg, #2c3e50 0%, #000000 100%); /* Color base oscuro */
+  background: linear-gradient(180deg, #2c3e50 0%, #000000 100%);
   border-radius: 20px 20px 10px 10px;
   box-shadow: inset 0 5px 10px rgba(255,255,255,0.1);
   z-index: 5;
@@ -290,24 +289,24 @@ canvas {
 
 /* === HUD HOLOGRÁFICO === */
 .hud {
-    position: absolute;
-    bottom: 44vh;
-    right: 23vh;
-    text-align: right;
-    color: #fff;
-    z-index: 100;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-    display: flex;
-    justify-content: space-around;
-    gap: 16vh;
-    align-items: center;
+  position: absolute;
+  bottom: 44vh;
+  right: 23vh;
+  text-align: right;
+  color: #fff;
+  z-index: 100;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  display: flex;
+  justify-content: space-around;
+  gap: 16vh;
+  align-items: center;
 }
 
 .velocimetro {
   top: 10vh;
   display: flex;
   justify-content: space-around;
-  gap: .5vh;
+  gap: 0.5vh;
   font-size: 48px;
   font-weight: 900;
   font-style: italic;
@@ -377,8 +376,118 @@ canvas {
 }
 .periodo-selector button:hover { background: rgba(0, 255, 255, 0.2); border-color: #0ff; }
 
+/* === ♦️ DIAMANTE (reservado) === */
+.diamante {
+  position: absolute;
+  bottom: 45%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.1);
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.diamante-shape {
+  font-size: 100px;
+  text-shadow: 0 0 15px #fff, 0 0 30px #0ff;
+  animation: flotar-diamante 3s ease-in-out infinite;
+}
+@keyframes flotar-diamante {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.diamante.animacion-acercarse {
+  animation: acercar-diamante 3s linear forwards;
+}
+@keyframes acercar-diamante {
+  0% { bottom: 45%; transform: translateX(-50%) scale(0.1); opacity: 1; }
+  100% { bottom: 10%; transform: translateX(-50%) scale(1.5); opacity: 0; }
+}
+
+/* === OVERLAY DE MENSAJE SOBRE EL AUTO === */
+.mensaje-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 69%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.oculto {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mensaje-card {
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 14px;
+  text-align: center;
+  max-width: 90vw;
+  min-width: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 14px rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+  transform: translateY(0);
+  opacity: 1;
+  animation: aparecer-mensaje 0.35s ease-out forwards;
+}
+
+@keyframes aparecer-mensaje {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.icono-mensaje {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 6px;
+  animation: latido-icono 2s infinite;
+}
+@keyframes latido-icono {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+#texto-bonito {
+  font-size: 16px;
+  line-height: 1.45;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
+}
+
+.barra-tiempo {
+  width: 100%;
+  height: 5px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #fff, #a881ff);
+  border-radius: 3px;
+  transform: translateX(0);
+}
+
+@keyframes progreso-mensaje {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-100%); }
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 400px) {
   .hero-car { width: 220px; height: 110px; }
   .velocimetro { font-size: 36px; }
+  #texto-bonito { font-size: 15px; }
+  .mensaje-card { padding: 12px 14px; }
 }

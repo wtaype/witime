@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 export const autoTiempo = () => {
     return `
-    <div class="autowil-game">
+    <div class="autowil-game" data-periodo="atardecer">
       <!-- 🌌 Capa de Efectos -->
       <canvas id="estrellas-canvas"></canvas>
       <canvas id="lluvia-canvas"></canvas>
@@ -11,13 +11,11 @@ export const autoTiempo = () => {
       <div class="mundo">
         <div class="cielo">
             <div class="sol-luna"></div>
-            <div class="montanas-fondo"></div> <!-- Nuevo: Silueta montañas -->
+            <div class="montanas-fondo"></div>
         </div>
 
         <!-- 🛣️ Carretera y Paisaje -->
         <div class="pista-contenedor">
-            
-            <!-- 🌲 NUEVO: Bosques Laterales (USA Style) -->
             <div class="bosque bosque-izq"></div>
             <div class="bosque bosque-der"></div>
 
@@ -26,6 +24,11 @@ export const autoTiempo = () => {
                 <div class="borde-pista b-izq"></div>
                 <div class="lineas-carril"></div>
                 <div class="borde-pista b-der"></div>
+
+                <!-- Diamante con mensaje -->
+                <div id="diamante-item" class="diamante oculto">
+                    <div class="diamante-shape">💎</div>
+                </div>
             </div>
         </div>
 
@@ -60,6 +63,17 @@ export const autoTiempo = () => {
             <span class="vel-unit">KM/H</span>
         </div>
         <div class="marcha">W5</div>
+      </div>
+
+      <!-- ✨ Mensaje Bonito -->
+      <div id="mensaje-overlay" class="mensaje-overlay oculto">
+        <div class="mensaje-card">
+          <span class="icono-mensaje">✨</span>
+          <p id="texto-bonito">Aquí va el mensaje positivo...</p>
+          <div class="barra-tiempo">
+            <div class="barra-progreso"></div>
+          </div>
+        </div>
       </div>
 
       <!-- ⚙️ Controles -->
