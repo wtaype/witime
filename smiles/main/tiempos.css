@@ -33,7 +33,7 @@ canvas {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 50%;
+  height: 40%;
   background: linear-gradient(to bottom, #020024 0%, #090979 50%, #00d4ff 100%);
   transition: background 2s ease;
   z-index: 1;
@@ -67,7 +67,7 @@ canvas {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 50%;
+  height: 70%;
   transform-style: preserve-3d;
   transform: rotateX(60deg); /* Inclina el suelo */
   perspective-origin: 50% 0%;
@@ -116,7 +116,7 @@ canvas {
 /* === 🏎️ SUPERDEPORTIVO (DISEÑO CSS PURO) === */
 .hero-car {
   position: absolute;
-  bottom: 24%;
+  bottom: 36%;
   left: 50%;
   transform: translateX(-50%);
   width: 280px;
@@ -291,7 +291,7 @@ canvas {
 /* === HUD HOLOGRÁFICO === */
 .hud {
     position: absolute;
-    bottom: 32.5vh;
+    bottom: 44vh;
     right: 23vh;
     text-align: right;
     color: #fff;
