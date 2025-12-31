@@ -121,7 +121,7 @@ export class Juego {
     this.mensajes = [
       '¡Feliz Año Nuevo! Dios te bendiga y te guíe. 🎉🙏',
       'Dios va contigo, ánimo y fe. ✨',
-      'Él renueva tus fuerzas cada día. 🕊️',
+      'Dios renueva tus fuerzas cada día. 🕊️',
       'Confía, Dios tiene el control. 🙏',
       'La paz de Dios te acompaña siempre. ❤️',
       '2026 será un año de bendición. 🏆',
@@ -154,7 +154,7 @@ export class Juego {
     if (p === 'noche') return '¡Que tengas buena noche! 🌙';
     if (p === 'amanecer') return '¡Buen amanecer! 🌄';
     if (p === 'atardecer') return '¡Que tengas una excelente tarde! 🌆';
-    return '¡Que tengas un excelente día! ☀️';
+    return '¡Que tengas un excelente año! ☀️';
   }
 
   mostrarSaludo() {
