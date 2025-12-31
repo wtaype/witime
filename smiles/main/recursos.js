@@ -118,14 +118,23 @@ export class Juego {
     this.lluvia = new Lluvia('lluvia-canvas');
     this.estrellas = new Estrellas('estrellas-canvas');
     this.audio = document.getElementById('motor-audio');
-    this.mensajes = [
-      '¡Feliz Año Nuevo! Dios te bendiga y te guíe. 🎉🙏',
-      'Dios va contigo, ánimo y fe. ✨',
-      'Dios renueva tus fuerzas cada día. 🕊️',
-      'Confía, Dios tiene el control. 🙏',
-      'La paz de Dios te acompaña siempre. ❤️',
-      '2026 será un año de bendición. 🏆',
-    ];
+this.mensajes = [
+  '¡Feliz Año Nuevo! Dios te bendiga y te guíe. 🎉🙏',
+  'Dios va contigo, ánimo y fe. ✨',
+  'Dios renueva tus fuerzas cada día. 🕊️',
+  'Confía, Dios tiene el control. 🙏',
+  'La paz de Dios te acompaña siempre. ❤️',
+  '2026 será un año de bendición. 🏆',
+  'Que el amor de Dios te llene de esperanza este nuevo año. 💫',
+  'Que este 2026 esté lleno de milagros y bendiciones. 🙌',
+  'Dios tiene un propósito maravilloso para ti en este nuevo año. 🌟',
+  'Con Dios en tu corazón, nada es imposible. 💖',
+  'Este nuevo año, que cada día esté lleno de su luz y amor. 🌞',
+  'Que el Señor te guíe hacia nuevas oportunidades en 2026. 🚀',
+  'Que el Espíritu Santo te llene de sabiduría este año. 📖',
+  'Cada amanecer es una bendición de Dios, ¡disfrútalo! 🌅',
+  'Que la gracia de Dios te acompañe en cada paso que tomes este año. 🙏',
+];
     this.indiceMensaje = 0;
     this.init();
   }
@@ -154,7 +163,7 @@ export class Juego {
     if (p === 'noche') return '¡Que tengas buena noche! 🌙';
     if (p === 'amanecer') return '¡Buen amanecer! 🌄';
     if (p === 'atardecer') return '¡Que tengas una excelente tarde! 🌆';
-    return '¡Que tengas un excelente año! ☀️';
+    return '¡Que tengas un excelente Año 2026! ☀️';
   }
 
   mostrarSaludo() {
